@@ -14,7 +14,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+FILE_DIR = os.path.abspath(os.path.dirname(__file__))
+PROJECT_DIR = os.path.dirname(__file__) 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -25,7 +26,14 @@ SECRET_KEY = 'f*p2pbwnr&e5@xc$_^!&-ty_s*!lvxlm67n#yomnbmq6z@cco#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ADMINS = (
+    ('Tom Meland Pedersen', 'tompersen@gmail.com')
+)
+MANAGERS = ADMINS
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -37,6 +45,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #Secondary apps
+    'static_precompiler',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +65,7 @@ ROOT_URLCONF = 'bootie.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'bootie/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,4 +114,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'public', 'static')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_DIR, 'static'),
+)
+
+#######################
+#    Uploded media    #
+#######################
+
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'public', 'media')
+MEDIA_URL = '/media/'

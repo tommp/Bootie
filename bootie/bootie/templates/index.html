@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/index.less' %}"/>
+{% endblock %}
+
+{% block content %}
+	<div class="row middle-row">
+        <span class="align-helper"></span>
+        <a href="/">
+        <img class="main-logo" href="/" src="{% static 'img/main_logo_proper.png' %}" alt="Logo">
+        </a>
+    </div>
+{% endblock content %}
