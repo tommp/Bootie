@@ -1,9 +1,13 @@
 @import "palette.less";
 
+.dropdown-menu {
+	background-color: @primary-hue-dark!important;
+
+}
+
 .header{
 	background-color: @primary-hue-dark;
 	height: @header-height;
-	overflow: hidden;
 }
 
 .footer{
@@ -12,3 +16,67 @@
 	overflow: hidden;
 }
 
+.arrow-down {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	width: 0; 
+	height: 0; 
+	border-left: @arrow-size solid transparent;
+	border-right: @arrow-size solid transparent;
+	border-top: @arrow-size solid @accent;
+}
+
+
+@media (max-width: 767px) { 
+	.dropdown.custom:hover .dropdown-menu {
+	  visibility: visible;
+	  display:block;
+	  border-radius:0;
+	}
+}
+
+
+li {
+	list-style-type: none;
+	text-align: center;
+	font-weight: bold;
+	a{
+		text-align: center;
+		font-weight: bold!important;
+		color: @accent!important;
+		font-size: 2em;
+	}
+
+	a:hover{
+		text-decoration: none;
+	}
+
+	a:visited{
+		text-decoration: none;
+	}
+
+	a:active{
+		text-decoration: none;
+	}
+
+	a:link{
+		text-decoration: none;
+	}
+}
+
+.dd-menu {
+	margin-top: 5px;
+}
+
+.ntnui-logo{
+	margin-top: 10px;
+	height: calc(@header-height - 20px);
+	width: auto;
+}
+
+.login{
+	text-align: right;
+	font-weight: bold;
+	color: @accent;
+}
