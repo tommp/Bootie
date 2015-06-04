@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     #Secondary apps
     'static_precompiler',
+    'posts',
 )
 
 MIDDLEWARE_CLASSES = (
