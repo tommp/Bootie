@@ -35,6 +35,7 @@
     <link type="text/less" rel="stylesheet" href="{% static 'css/base.less' %}"/>
     <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
     <link type="text/less" rel="stylesheet" href="{% static 'css/text.less' %}"/>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     
     {% block css %}
     {% endblock %}
@@ -43,26 +44,23 @@
 
         {% block header %}
         <div class="row header">
-            <div class="col-md-2 ntnui-link">
-                <a href="http://ntnui.no">
-                    <img class="ntnui-logo" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
-                </a>
-            </div>
 
-            <div class="col-md-2 col-md-offset-3 dd-menu">
-                <li class="dropdown custom closed"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu</a>
+            <div class="col-md-2 col-md-offset-5 dd-menu">
+                <li class="dropdown custom closed"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">&#9776;</a>
                  <ul class="dropdown-menu">
-                     <li><a class="text-dark" href="#">Information</a></li>
-                     <li><a class="text-dark" href="#">Board</a></li>
-                     <li><a class="text-dark" href="#">Courses</a></li>
-                     <li><a class="text-dark" href="#">Tide forcast</a></li>
-                     <li><a class="text-dark" href="#">River levels</a></li>
+                     <li><a href="#">Information</a></li>
+                     <li><a href="#">Board</a></li>
+                     <li><a href="#">Courses</a></li>
+                     <li><a href="#">Tide forcast</a></li>
+                     <li><a href="#">River levels</a></li>
+                     <li><a href="#">Weather forecast</a></li>
+                     <li><a href="#">Events</a></li>
                   </ul>
                </li>
             </div>
 
             <div class="col-md-2 col-md-offset-3 login">
-                    Login!
+                Login!
             </div>
         </div>
         {% endblock %}
@@ -73,7 +71,10 @@
 
         {% block footer %}
             <div class="row footer">
-                <div class="arrow-down">
+                <div class="col-md-2 col-md-offset-5 ntnui-link">
+                    <a href="http://ntnui.no">
+                        <img class="ntnui-logo" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
+                    </a>
                 </div>
             </div>
         {% endblock %}

@@ -7,9 +7,41 @@
 
 {% block content %}
 	<div class="row middle-row">
-        <span class="align-helper"></span>
-        <a href="/">
-        <img class="main-logo" href="/" src="{% static 'img/main_logo_proper.png' %}" alt="Logo">
-        </a>
+
+		<div class="col-md-4">
+			<div class="row">
+		        <a href="/">
+		        <img class="main-logo img-responsive" href="/" src="{% static 'img/main_logo_proper.png' %}" alt="Logo">
+		        </a>
+		    </div>
+
+		    <div class="row">
+		        <div class="col-md-10 col-md-offset-1 text-dark join-text">
+		        	<h1>Wanna join the crew? Register <a href="/" class="main-links">here!</a></h1>
+		        </div>
+		    </div>
+
+	    </div>
+
+        <div class="col-md-offset-1 col-md-7 frames">
+        	<div class="row text-secondary-dark news-tag">
+        		Latest news!
+        	</div>
+        	<div class="row no-gutter top-row-pad">
+        		<div class="col-md-11 index-frame-1">
+        		One
+        		</div>
+        	</div>
+        	<div class="row no-gutter">
+        		<div class="col-md-5 index-frame-3">
+        		One
+        		</div>
+
+        		<div class="col-md-5 index-frame-4">
+        		One
+        		</div>
+        	</div>
+        </div>
+
     </div>
 {% endblock content %}

@@ -1,30 +1,50 @@
-@import "palette.less";
+@import "vars.less";
+
+*{font-family: 'Roboto', sans-serif;}
 
 .dropdown-menu {
 	background-color: @primary-hue-dark!important;
+	a:hover{
+		background-color: @primary-hue-light!important;
+	}
+}
 
+.dropdown-toggle:hover{
+	box-shadow: 0 2px 15px;
 }
 
 .header{
 	background-color: @primary-hue-dark;
 	height: @header-height;
+	box-shadow: 0 2px 15px;
+	z-index: 9001;
+	position: fixed;
+	width: 100%;
 }
 
 .footer{
 	background-color: @primary-hue-light;
 	height: @footer-height;
-	overflow: hidden;
+	box-shadow: 0 2px 15px;
+	z-index: 9001;
+	position: fixed;
+	width: 100%;
 }
 
 .arrow-down {
-	margin-left: auto;
-	margin-right: auto;
 	margin-top: 10px;
 	width: 0; 
 	height: 0; 
+	background-color: @primary-hue-dark;
 	border-left: @arrow-size solid transparent;
 	border-right: @arrow-size solid transparent;
 	border-top: @arrow-size solid @accent;
+	box-shadow: 0 2px 15px;
+	z-index: 9001;
+}
+
+.arrow-down:hover{
+		box-shadow: 0 4px 30px;
 }
 
 
@@ -42,9 +62,8 @@ li {
 	text-align: center;
 	font-weight: bold;
 	a{
-		text-align: center;
-		font-weight: bold!important;
-		color: @accent!important;
+		text-align: left;
+		color: #FFFFFF!important;
 		font-size: 2em;
 	}
 
@@ -73,6 +92,12 @@ li {
 	margin-top: 10px;
 	height: calc(@header-height - 20px);
 	width: auto;
+	margin-left: 50px;
+	opacity: 0.34;
+}
+
+.ntnui-logo:hover{
+	opacity: 1;
 }
 
 .login{

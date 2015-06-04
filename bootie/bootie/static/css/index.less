@@ -1,22 +1,79 @@
-@import "palette.less";
+@import "vars.less";
 
 .main-logo {
 	width: auto;
-	height: 60%;
+	height: auto;
     vertical-align: middle;
     margin-left: 50px;
 
 }
 
-.align-helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
 .middle-row{
 	overflow: hidden;
+	overflow-y: visible;
 	background-color: @primary;
 	height: @mainrow-height;
+	z-index: 5;
+	margin-top: @header-height;
 }
 
+.index-frame-1{
+	background-color: @frame-color;
+	margin: @frame-padding;
+	box-shadow: 0 1px 7px;
+}
+
+.index-frame-1:hover{
+		box-shadow: 0 4px 30px;
+}
+
+.index-frame-2{
+	background-color: @frame-color;
+	box-shadow: 0 1px 7px;
+	margin: @frame-padding;
+}
+
+.index-frame-2:hover{
+		box-shadow: 0 4px 30px;
+}
+
+.index-frame-3{
+	background-color: @frame-color;
+	box-shadow: 0 1px 7px;
+	margin: @frame-padding;
+}
+
+.index-frame-3:hover{
+		box-shadow: 0 4px 30px;
+}
+
+.index-frame-4{
+	background-color: @frame-color;
+	box-shadow: 0 1px 7px;
+	margin: @frame-padding;
+}
+
+.index-frame-4:hover{
+		box-shadow: 0 4px 30px;
+}
+
+.top-row-pad{
+	margin-top: 10px;
+	border-top: 1px solid @accent;
+}
+
+.news-tag{
+	font-size: 2.6em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+}
+
+.main-links{
+	color: @accent
+}
+
+.main-links:hover{
+	color: @accent;
+	opacity: 1!important;
+}
