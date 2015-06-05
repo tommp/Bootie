@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin', include(admin.site.urls)),
     url(r'^', include('index.urls')),
+    url(r'^article/', include('posts.urls')),
 
 ]
 

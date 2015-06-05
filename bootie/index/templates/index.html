@@ -34,52 +34,58 @@
         	</div>
         	<div class="row no-gutter top-row-pad">
         		<div class="col-md-11 index-frame-1">
-        			<div class="row">
-	        			<div class="col-md-4 remove-padding">
-	        				<img class="img-responsive" href="/" src="{{news.0.image.url}}" alt="">
+	        		<a href="{{news.0.get_absolute_url}}">
+	        			<div class="row">
+		        			<div class="col-md-4 remove-padding">
+		        				<img class="img-responsive" href="/" src="{{news.0.image.url}}" alt="">
+		        			</div>
+		        			<div class="col-md-8">
+		        				<div class="row" style="padding-left: 10px;">
+		        					<h1>{{news.0.headline|linebreaks}}</h1>
+		        				</div>
+		        				<div class="row" style="padding-left: 10px;">
+		        					{{news.0.lead|linebreaks}}
+		        				</div>
+		        			</div>
 	        			</div>
-	        			<div class="col-md-8">
-	        				<div class="row" style="padding-left: 10px;">
-	        					<h1>{{news.0.headline|linebreaks}}</h1>
-	        				</div>
-	        				<div class="row" style="padding-left: 10px;">
-	        					{{news.0.lead|linebreaks}}
-	        				</div>
-	        			</div>
-        			</div>
+        			</a>
         		</div>
         	</div>
         	<div class="row no-gutter">
         		<div class="col-md-5 index-frame-3">
-        			<div class="row">
-        				<div class="col-md-5 remove-padding">
-	        				<img class="img-responsive" href="/" src="{{news.1.image.url}}" alt="">
+        			<a href="{{news.1.get_absolute_url}}">
+	        			<div class="row">
+	        				<div class="col-md-5 remove-padding">
+		        				<img class="img-responsive" href="/" src="{{news.1.image.url}}" alt="">
+		        			</div>
+		        			<div class="col-md-7">
+		        				<div class="row textfield" style="padding-left: 5px;">
+		        					<b>{{news.1.headline|linebreaks}}</b>
+		        				</div>
+		        				<div class="row textfield-small" style="padding-left: 5px;">
+		        					{{news.1.lead|linebreaks}}
+		        				</div>
+		        			</div>
 	        			</div>
-	        			<div class="col-md-7">
-	        				<div class="row textfield" style="padding-left: 5px;">
-	        					<b>{{news.1.headline|linebreaks}}</b>
-	        				</div>
-	        				<div class="row textfield-small" style="padding-left: 5px;">
-	        					{{news.1.lead|linebreaks}}
-	        				</div>
-	        			</div>
-        			</div>
+	        		</a>
         		</div>
 
         		<div class="col-md-5 index-frame-4">
-        			<div class="row">
-        				<div class="col-md-5 remove-padding">
-	        				<img class="img-responsive" href="/" src="{{news.2.image.url}}" alt="">
+        			<a href="{{news.2.get_absolute_url}}">
+	        			<div class="row">
+	        				<div class="col-md-5 remove-padding">
+		        				<img class="img-responsive" href="/" src="{{news.2.image.url}}" alt="">
+		        			</div>
+		        			<div class="col-md-7">
+		        				<div class="row textfield" style="padding-left: 5px;">
+		        					<b>{{news.2.headline|linebreaks}}</b>
+		        				</div>
+		        				<div class="row textfield-small" style="padding-left: 5px;">
+		        					{{news.2.lead|linebreaks}}
+		        				</div>
+		        			</div>
 	        			</div>
-	        			<div class="col-md-7">
-	        				<div class="row textfield" style="padding-left: 5px;">
-	        					<b>{{news.2.headline|linebreaks}}</b>
-	        				</div>
-	        				<div class="row textfield-small" style="padding-left: 5px;">
-	        					{{news.2.lead|linebreaks}}
-	        				</div>
-	        			</div>
-        			</div>
+        			</a>
         		</div>
         	</div>
         </div>
