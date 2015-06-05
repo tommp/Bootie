@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+GIT_ROOT = os.path.abspath(__file__).rsplit(os.path.sep, 3)[0]
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILE_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.dirname(__file__) 
@@ -48,6 +49,7 @@ INSTALLED_APPS = (
     #Secondary apps
     'static_precompiler',
     'posts',
+    'index',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -129,5 +131,6 @@ STATICFILES_DIRS = (
 #    Uploded media    #
 #######################
 
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'public', 'media')
+#Media files, images, videos etc.
+MEDIA_ROOT = os.path.join(GIT_ROOT, 'public', 'media')
 MEDIA_URL = '/media/'
