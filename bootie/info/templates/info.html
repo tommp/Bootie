@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/info.less' %}"/>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+  
+		<div class="col-md-4 col-md-offset-2 margin-info left-col">
+			<div class="row">
+				<div class="col-md-12 main-text-general">
+					<h1 class="header-text">General info</h1>
+				</div>
+			</div>
+			<div class="row">
+			{% for gen_art in general_articles%}
+				<a href="{{gen_art.get_absolute_url}}">
+    				<div class="col-md-6">
+    					<div class="info-frame">
+	        				<img class="img-responsive" href="/" src="{{gen_art.image.url}}" alt="">
+	        				<b>{{gen_art.headline|linebreaks}}</b>
+	        			</div>
+        			</div>
+	    		</a>
+	    	{% endfor %}
+	    	</div>
+		</div>
+
+		<div class="col-md-4 margin-info remove-padding">
+			<div class="row">
+				<div class="col-md-12 main-text-activities">
+					<h1 class="header-text">Activities</h1>
+				</div>
+			</div>
+			{% for activity in activities %}
+				<a href="{{activity.get_absolute_url}}">
+    				<div class="col-md-6">
+    					<div class="info-frame">
+	        				<img class="img-responsive" href="/" src="{{activity.image.url}}" alt="">
+	        				<b>{{activity.headline|linebreaks}}</b>
+        				</div>
+        			</div>
+	    		</a>
+	    	{% endfor %}
+		</div>
+
+    </div>
+{% endblock content %}

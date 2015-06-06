@@ -23,6 +23,9 @@ urlpatterns = [
     url(r'^admin', include(admin.site.urls)),
     url(r'^', include('index.urls')),
     url(r'^article/', include('posts.urls')),
+    url(r'^weather/', include('weatherforecast.urls')),
+    url(r'^tide/', include('tideforecast.urls')),
+    url(r'^info/', include('info.urls')),
 
 ]
 

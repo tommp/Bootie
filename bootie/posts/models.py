@@ -4,8 +4,9 @@ from django.core.urlresolvers import reverse
 
 class Article(models.Model):
     CATEGORIES = (
-        ('info', 'Information archive'),
         ('news', 'News article'),
+        ('info_general', 'General information'),
+        ('info_activity', 'Activity information'),
     )
 
     created = models.DateTimeField('created', auto_now_add=True)
@@ -14,7 +15,7 @@ class Article(models.Model):
     is_published = models.BooleanField('is published', help_text="If this is checked, the article is visible in the frontend", default=False)
 
     slug = models.SlugField('slug', max_length=200, unique=True, blank=True)
-    category = models.CharField('category', choices=CATEGORIES, blank=True, null=True, max_length=100)
+    category = models.CharField('category', choices=CATEGORIES, default=CATEGORIES[0][0], blank=True, null=True, max_length=100)
 
     image = models.ImageField('image', upload_to="images/", null=True, blank=True)
     image_description = models.TextField( null=True, blank=True )

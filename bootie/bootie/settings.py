@@ -50,6 +50,9 @@ INSTALLED_APPS = (
     'static_precompiler',
     'posts',
     'index',
+    'weatherforecast',
+    'tideforecast',
+    'info',
 )
 
 MIDDLEWARE_CLASSES = (

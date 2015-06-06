@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/weather.less' %}"/>
+{% endblock %}
+
+{% block content %}
+	<div class="row weather-row">
+		<div class="col-md-10 col-md-offset-1">
+			<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=63.4297&lon=10.3933&name=Trondheim&units=si"> </iframe>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=62.5736&lon=9.6089&name=Oppdal&units=si"> </iframe>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=63.5472&lon=8.8547&name=Hitra&units=si"> </iframe>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=61.6833&lon=9.5500&name=Sjoa&units=si"> </iframe>
+		</div>
+	</div>
+{% endblock content %}

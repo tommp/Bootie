@@ -10,5 +10,5 @@ class IndexView(ListView):
 
 	def get_context_data(self, **kwargs):
 		context = super(IndexView, self).get_context_data(**kwargs)
-		context['news'] = Article.objects.filter(is_published=True).order_by('-created')[:3]
+		context['news'] = Article.objects.filter(is_published=True).filter(category='news').order_by('-created')[:3]
 		return context
