@@ -1,4 +1,5 @@
 @import "vars.less";
+@import "text.less";
 
 .main-logo {
 	width: auto;
@@ -17,45 +18,36 @@
 	margin-top: @header-height;
 }
 
-.index-frame-1{
+.index-frame{
 	background-color: @frame-color;
 	margin: @frame-padding;
 	box-shadow: 0 1px 7px;
+	a{
+		text-align: left;
+		.text-secondary-light;
+	}
+
+	a:hover{
+		text-decoration: none;
+	}
+
+	a:visited{
+		text-decoration: none;
+	}
+
+	a:active{
+		text-decoration: none;
+	}
+
+	a:link{
+		text-decoration: none;
+	}
 }
 
-.index-frame-1:hover{
+.index-frame:hover{
 		box-shadow: 0 4px 30px;
 }
 
-.index-frame-2{
-	background-color: @frame-color;
-	box-shadow: 0 1px 7px;
-	margin: @frame-padding;
-}
-
-.index-frame-2:hover{
-		box-shadow: 0 4px 30px;
-}
-
-.index-frame-3{
-	background-color: @frame-color;
-	box-shadow: 0 1px 7px;
-	margin: @frame-padding;
-}
-
-.index-frame-3:hover{
-		box-shadow: 0 4px 30px;
-}
-
-.index-frame-4{
-	background-color: @frame-color;
-	box-shadow: 0 1px 7px;
-	margin: @frame-padding;
-}
-
-.index-frame-4:hover{
-		box-shadow: 0 4px 30px;
-}
 
 .top-row-pad{
 	margin-top: 10px;
@@ -91,3 +83,4 @@
 	word-break: break-all;
 	font-size: 0.8em;
 }
+

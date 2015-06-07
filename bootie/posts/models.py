@@ -1,6 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 from django.db import models
 from django.utils import timezone
 from django.core.urlresolvers import reverse
+from django.conf import settings
 
 class Article(models.Model):
     CATEGORIES = (
@@ -39,3 +42,25 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('article_detail',
                        kwargs={'pk': self.pk, 'slug': self.slug})
+
+
+
+
+#class PaddleUser(models.Model):
+#     TITLES = (
+#        ('Leder', 'Leder'),
+#        ('Leder', 'Nestleder'),
+#        ('Økonomisjef', 'Økonomisjef'),
+#        ('Elvesjef','Elvesjef'),
+#        ('Havsjef','Havsjef'),
+#        ('Websjef','Websjef'),
+#        ('Utstyrssjef hav','Utstyrssjef hav'),
+#        ('Utstyressjef elv','Utstyressjef elv'),
+#        ('Polosjef','Polosjef'),
+#        ('Websjef','Websjef'),
+#        ('Sosialansvarlig','Sosialansvarlig'),
+#        ('Styremedlem','Styremedlem'),
+#    )
+#    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+#    profile_pic = models.ImageField('profile picture', upload_to="images/", null=True, blank=True)
+#    user = models.ForeignKey(models.CharField, choices=TITLES, blank=True, null=True, max_length=100)

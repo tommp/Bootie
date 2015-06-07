@@ -6,10 +6,10 @@
 @winheight:`$(window).height()`;
 @framesize: 200px;
 @frame-padding: 10px;
-@frame-color: @primary-hue-light;
+@frame-color: @primary-hue-dark;
 
 @header-height: 60px;
-@footer-height: 60px;
-@mainrow-height: calc(~"@{winheight}px" - @header-height + @footer-height);
+@mainrow-height: calc(~"@{winheight}px" - @header-height);
+@footer-height: @mainrow-height;
 
 @arrow-size: 40px;

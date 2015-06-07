@@ -1,4 +1,5 @@
 @import "vars.less";
+@import "text.less";
 
 *{font-family: 'Roboto', sans-serif;}
 
@@ -27,7 +28,7 @@
 	height: @footer-height;
 	box-shadow: 0 2px 15px;
 	z-index: 9001;
-	position: fixed;
+	position: absolute;
 	width: 100%;
 }
 
@@ -113,8 +114,8 @@ li {
 .login{
 	text-align: right;
 	font-weight: bold;
-	color: @accent;
 	margin-top: 7px;
+	.text-light;
 }
 
 .admin-tag{
