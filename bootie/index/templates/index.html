@@ -3,19 +3,44 @@
 
 {% block css %}
 	<link type="text/less" rel="stylesheet" href="{% static 'css/index.less' %}"/>
+	<link type="text/less" rel="stylesheet" href="{% static 'css/calendar.less' %}"/>
 {% endblock %}
 
 {% block content %}
 	<div class="row middle-row">
-
-		<div class="col-md-4">
+		<div class="col-md-5">
 			<div class="row">
-		        <img class="main-logo img-responsive" href="/" src="{% static 'img/the_force.png' %}" alt="Logo">
+				{% if user.is_authenticated %}
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 calendar remove-only-padding" id="calendar-div">
+							{{ calendar }}
+						<div class="row">
+							<div class="col-sm-9 welcome-message">
+								{% if user.first_name %}
+				                    Welcome back <a class="profile-link" href="/">{{ user.first_name }}!</a>
+				                {% else %}
+				                    Welcome back <a class="profile-link" href="/">{{ user.username }}!</a>
+				                {% endif %}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-9 welcome-info">
+								Check out the calendar for information on future events!
+							</div>
+						</div>
+					</div>
+					</div>
+					
+				{% else %}
+		        	<img class="main-logo img-responsive" href="/" src="{% static 'img/the_force.png' %}" alt="Logo">
+		    	{% endif %}
 		    </div>
 
+		    {% if user.is_authenticated %}
+		    {% else %}
 		    <div class="row">
 		        <div class="col-md-10 col-md-offset-1 text-dark join-text">
-		        	<h1>Wanna join the crew? Register <a href="/" class="main-links">here!</a></h1>
+		        	<h1>Wanna join the crew? Register <a href="/register/" class="main-links">here!</a></h1>
 		        </div>
 		    </div>
 		    <div class="row">
@@ -23,26 +48,27 @@
 		        	<h1>Who are we? Read all about us <a href="/" class="main-links">here!</a></h1>
 		        </div>
 		    </div>
+		    {% endif %}
 
 	    </div>
 
-        <div class="col-md-offset-1 col-md-7 frames">
+        <div class=" col-md-7 frames">
         	<div class="row text-secondary-dark news-tag">
         		Latest news!
         	</div>
         	<div class="row no-gutter top-row-pad">
         		<div class="col-md-11 index-frame">
-	        		<a href="{{news.0.get_absolute_url}}">
+	        		<a href="{{latest.get_absolute_url}}">
 	        			<div class="row">
 		        			<div class="col-md-4 remove-padding">
-		        				<img class="img-responsive" href="/" src="{{news.0.image.url}}" alt="">
+		        				<img class="img-responsive" href="/" src="{{latest.image.url}}" alt="">
 		        			</div>
 		        			<div class="col-md-8">
-		        				<div class="row textfield" style="padding-left: 10px;">
-		        					<h1>{{news.0.headline|linebreaks}}</h1>
+		        				<div class="row textfield headline-text" style="padding-left: 10px;">
+		        					<h1>{{latest.headline|linebreaks}}</h1>
 		        				</div>
 		        				<div class="row textfield" style="padding-left: 10px;">
-		        					{{news.0.lead|linebreaks}}
+		        					{{latest.lead|linebreaks}}
 		        				</div>
 		        			</div>
 	        			</div>
@@ -50,43 +76,38 @@
         		</div>
         	</div>
         	<div class="row no-gutter">
+        		{% for article in news %}
         		<div class="col-md-5 index-frame">
-        			<a href="{{news.1.get_absolute_url}}">
+        			<a href="{{article.get_absolute_url}}">
 	        			<div class="row">
 	        				<div class="col-md-5 remove-padding">
-		        				<img class="img-responsive" href="/" src="{{news.1.image.url}}" alt="">
+		        				<img class="img-responsive" href="/" src="{{article.image.url}}" alt="">
 		        			</div>
 		        			<div class="col-md-7">
-		        				<div class="row textfield" style="padding-left: 5px;">
-		        					<h4>{{news.1.headline|linebreaks}}</h4>
+		        				<div class="row textfield headline-text" style="padding-left: 5px;">
+		        					<h4>{{article.headline|linebreaks}}</h4>
 		        				</div>
 		        				<div class="row textfield-small" style="padding-left: 5px;">
-		        					{{news.1.lead|linebreaks}}
+		        					{{article.lead|linebreaks}}
 		        				</div>
 		        			</div>
 	        			</div>
 	        		</a>
         		</div>
-
-        		<div class="col-md-5 index-frame">
-        			<a href="{{news.2.get_absolute_url}}">
-	        			<div class="row">
-	        				<div class="col-md-5 remove-padding">
-		        				<img class="img-responsive" href="/" src="{{news.2.image.url}}" alt="">
-		        			</div>
-		        			<div class="col-md-7">
-		        				<div class="row textfield" style="padding-left: 5px;">
-		        					<h4>{{news.2.headline|linebreaks}}</h4>
-		        				</div>
-		        				<div class="row textfield-small" style="padding-left: 5px;">
-		        					{{news.2.lead|linebreaks}}
-		        				</div>
-		        			</div>
-	        			</div>
-        			</a>
-        		</div>
+        		{% endfor %}
         	</div>
         </div>
 
     </div>
 {% endblock content %}
+
+
+{% block js %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$( "#calendar-div" ).slideDown( "slow", function() {
+		// Animation complete.
+		});
+	});
+</script>
+{% endblock %}

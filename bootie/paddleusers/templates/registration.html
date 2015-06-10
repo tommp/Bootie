@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/user_auth.less' %}"/>
+{% endblock %}
+
+{% block content %}
+<div class="row mainrow-auth">
+  	<div class="col-md-2 col-md-offset-5">
+	  	<img style="margin-left: 10px;" class="img-responsive" href="/" src="{% static 'img/the_force.png' %}" alt="Logo">
+	    <form class="navbar-form navbar-left" action="" method="post">
+		    {{ form.non_field_errors }}
+		    <div class="form-field">
+		        {{ form.first_name.errors }}
+		        <label for="id_first_name">First name:</label>
+		        {{ form.first_name }}
+		    </div>
+		    <div class="form-field">
+		        {{ form.last_name.errors }}
+		        <label for="id_last_name">Last name:</label>
+		        {{ form.last_name }}
+		    </div>
+		    <div class="form-field">
+		        {{ form.email.errors }}
+		        <label for="id_email">E-mail	:</label>
+		        {{ form.email }}
+		    </div>
+		    <div class="form-field">
+		        {{ form.username.errors }}
+		        <label for="id_username">Username:</label>
+		        {{ form.username }}
+		    </div>
+		    <div class="form-field">
+		        {{ form.password1.errors }}
+		        <label for="id_password1">Password:</label>
+		        {{ form.password1 }}
+		    </div>
+		    <div class="form-field">
+		        {{ form.password2.errors }}
+		        <label for="id_password2">Verify password:</label>
+		        {{ form.password2 }}
+		    </div>
+		    {% csrf_token %}
+		    <button type="submit" class="btn register-button btn-success">Create the account</button>
+		</form>
+	</div>
+</div>
+{% endblock %}

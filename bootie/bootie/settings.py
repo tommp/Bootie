@@ -53,6 +53,8 @@ INSTALLED_APPS = (
     'weatherforecast',
     'tideforecast',
     'info',
+    'paddleusers',
+    'eventcalendar',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -137,3 +139,13 @@ STATICFILES_DIRS = (
 #Media files, images, videos etc.
 MEDIA_ROOT = os.path.join(GIT_ROOT, 'public', 'media')
 MEDIA_URL = '/media/'
+
+
+
+#######################
+#     Login info      #
+#######################
+
+LOGIN_URL = 'bootie_login'
+LOGOUT_URL = 'bootie_logout'
+LOGIN_REDIRECT_URL = '/'

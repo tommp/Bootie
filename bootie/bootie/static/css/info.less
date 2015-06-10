@@ -1,11 +1,17 @@
 @import "vars.less";
 @import "text.less";
 
+.main-background{
+	background-color: @background-pleasant-neutral;
+}
+
 .info-frame{
 	background-color: @frame-color;
 	padding: @frame-padding!important;
-	box-shadow: 0 1px 7px;
+	box-shadow: 0 1px 7px #000000;
 	margin-bottom: 30px;
+	.text-dark;
+	font-size: 1.2em;
 	b{
 		text-align: left;
 		.text-secondary-dark;
@@ -13,7 +19,7 @@
 }
 
 .info-frame:hover{
-		box-shadow: 0 4px 30px;
+		box-shadow: 0 4px 30px #000000;
 }
 
 .remove-padding{
