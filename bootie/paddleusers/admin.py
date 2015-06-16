@@ -1,9 +1,9 @@
 from django.contrib import admin
-from models import BoardMember
+from models import PaddleUser
 
-class BoardMemberAdmin(admin.ModelAdmin):
+class PaddleUserAdmin(admin.ModelAdmin):
 	fieldsets = [
-	( None, {'fields': ['profile_pic', 'position']}),
+	( None, {'fields': ['profile_pic', 'user', 'paid_until', 'banned']}),
     ]
 
-admin.site.register(BoardMember, BoardMemberAdmin)
+admin.site.register(PaddleUser, PaddleUserAdmin)

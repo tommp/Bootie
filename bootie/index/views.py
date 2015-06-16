@@ -19,7 +19,12 @@ class IndexView(ListView):
 		#)
 
 		context = super(IndexView, self).get_context_data(**kwargs)
-		context['latest'] = Article.objects.filter(is_published=True).filter(category='news').order_by('-created')[0]
-		context['news'] = Article.objects.filter(is_published=True).filter(category='news').order_by('-created')[1:5]
+		articles = Article.objects.filter(is_published=True).filter(category='news').order_by('-created')
+		if articles:
+			context['latest'] = articles[0]
+			context['news'] = articles[1:5]
+		else:
+			context['latest'] = ""
+			context['news'] = ""
 		context['calendar'] = mark_safe(EventCalendar(events).formatmonth(year, month))
 		return context

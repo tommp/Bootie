@@ -3,6 +3,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import FormView
 from django.contrib.auth.models import User
+from paddleusers.models import PaddleUser
+from datetime import datetime, timedelta
 
 class UserRegisterForm(forms.ModelForm):
 	error_messages = {
@@ -15,6 +17,10 @@ class UserRegisterForm(forms.ModelForm):
 	password2 = forms.CharField(label="Password confirmation",
 		widget=forms.PasswordInput,
 		help_text="Enter the same password as above, for verification.")
+
+	profile_picture = forms.ImageField(label="Profile picture",
+		widget=forms.ClearableFileInput, required=False)
+
 
 	class Meta:
 		model = User
@@ -63,6 +69,7 @@ class UserRegisterForm(forms.ModelForm):
 	def save(self, commit=True):
 		user = super(UserRegisterForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password1"])
+
 		if commit:
 			user.save()
 		return user
@@ -75,6 +82,8 @@ class RegisterView(FormView):
 
 	def form_valid(self, form):
 		new_user = form.save()
+		paddleuser = PaddleUser.create(profile_pic=form.cleaned_data["profile_picture"], user= new_user, paid_until=(datetime.now()+timedelta(days=7)))
+		paddleuser.save()
 		return super(RegisterView, self).form_valid(form)
 
 

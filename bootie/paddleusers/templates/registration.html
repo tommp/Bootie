@@ -7,9 +7,9 @@
 
 {% block content %}
 <div class="row mainrow-auth">
-  	<div class="col-md-2 col-md-offset-5">
+  	<div class="col-md-4 col-md-offset-4">
 	  	<img style="margin-left: 10px;" class="img-responsive" href="/" src="{% static 'img/the_force.png' %}" alt="Logo">
-	    <form class="navbar-form navbar-left" action="" method="post">
+	    <form enctype="multipart/form-data" class="navbar-form navbar-left" action="" method="post">
 		    {{ form.non_field_errors }}
 		    <div class="form-field">
 		        {{ form.first_name.errors }}
@@ -40,6 +40,12 @@
 		        {{ form.password2.errors }}
 		        <label for="id_password2">Verify password:</label>
 		        {{ form.password2 }}
+		    </div>
+
+		    <div class="form-field">
+		        {{ form.profile_picture.errors }}
+		        <label for="id_profile_picture">Upload a profile picture (optional):</label>
+		        {{ form.profile_picture }}
 		    </div>
 		    {% csrf_token %}
 		    <button type="submit" class="btn register-button btn-success">Create the account</button>

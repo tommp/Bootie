@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 from django.conf import settings
-import django.db.models.fields
 
 
 class Migration(migrations.Migration):
@@ -17,10 +16,19 @@ class Migration(migrations.Migration):
             name='PaddleUser',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('profile_pic', models.ImageField(upload_to=b'images/', null=True, verbose_name=b'profile picture', blank=True)),
-                ('position', models.CharField(blank=True, max_length=100, null=True, verbose_name=django.db.models.fields.CharField, choices=[(b'Leder', b'Leder'), (b'Leder', b'Nestleder'), (b'\xc3\x98konomisjef', b'\xc3\x98konomisjef'), (b'Elvesjef', b'Elvesjef'), (b'Havsjef', b'Havsjef'), (b'Websjef', b'Websjef'), (b'Utstyrssjef hav', b'Utstyrssjef hav'), (b'Utstyressjef elv', b'Utstyressjef elv'), (b'Polosjef', b'Polosjef'), (b'Websjef', b'Websjef'), (b'Sosialansvarlig', b'Sosialansvarlig'), (b'Styremedlem', b'Styremedlem')])),
-                ('about', models.TextField(verbose_name=b'about', blank=True)),
+                ('created', models.DateTimeField(auto_now_add=True, verbose_name=b'Created')),
+                ('paid_until', models.DateTimeField(verbose_name=b'Equipment rental valid until')),
+                ('profile_pic', models.ImageField(upload_to=b'images/', null=True, verbose_name=b'Profile picture', blank=True)),
+                ('banned', models.BooleanField(default=False, help_text=b'If this is checked, the user is banned and can no longer sign up for events and will not recieve the code for skansen.', verbose_name=b'Banned')),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Position',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=100, verbose_name=b'Board position')),
+                ('user', models.ForeignKey(to='paddleusers.PaddleUser', blank=True)),
             ],
         ),
     ]

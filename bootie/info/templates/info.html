@@ -19,7 +19,9 @@
 				<a href="{{gen_art.get_absolute_url}}">
     				<div class="col-md-4">
     					<div class="info-frame">
+    						{% if gen_art.image %}
 	        				<img class="img-responsive" href="/" src="{{gen_art.image.url}}" alt="">
+	        				{% endif %}
 	        				{{gen_art.headline|linebreaks}}
 	        			</div>
         			</div>
@@ -38,7 +40,9 @@
 				<a href="{{activity.get_absolute_url}}">
     				<div class="col-md-4">
     					<div class="info-frame">
+    						{% if activity.image %}
 	        				<img class="img-responsive" href="/" src="{{activity.image.url}}" alt="">
+	        				{% endif %}
 	        				{{activity.headline|linebreaks}}
         				</div>
         			</div>

@@ -32,7 +32,8 @@
 					</div>
 					
 				{% else %}
-		        	<img class="main-logo img-responsive" href="/" src="{% static 'img/the_force.png' %}" alt="Logo">
+		        	<img class="main-logo img-responsive" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
+		        	<h1 class="logo-text">Padling</h1>
 		    	{% endif %}
 		    </div>
 
@@ -60,9 +61,11 @@
         		<div class="col-md-11 index-frame">
 	        		<a href="{{latest.get_absolute_url}}">
 	        			<div class="row">
+	        				{% if latest.image %}
 		        			<div class="col-md-4 remove-padding">
 		        				<img class="img-responsive" href="/" src="{{latest.image.url}}" alt="">
 		        			</div>
+		        			{% endif %}
 		        			<div class="col-md-8">
 		        				<div class="row textfield headline-text" style="padding-left: 10px;">
 		        					<h1>{{latest.headline|linebreaks}}</h1>
@@ -80,9 +83,11 @@
         		<div class="col-md-5 index-frame">
         			<a href="{{article.get_absolute_url}}">
 	        			<div class="row">
+	        				{% if article.image %}
 	        				<div class="col-md-5 remove-padding">
 		        				<img class="img-responsive" href="/" src="{{article.image.url}}" alt="">
 		        			</div>
+		        			{% endif %}
 		        			<div class="col-md-7">
 		        				<div class="row textfield headline-text" style="padding-left: 5px;">
 		        					<h4>{{article.headline|linebreaks}}</h4>
