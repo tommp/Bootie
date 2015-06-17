@@ -54,7 +54,7 @@ INSTALLED_APPS = (
     'tideforecast',
     'info',
     'paddleusers',
-    'eventcalendar',
+    'events',
 )
 
 MIDDLEWARE_CLASSES = (

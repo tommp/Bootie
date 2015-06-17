@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.utils.safestring import mark_safe
-from eventcalendar.customCalendar import EventCalendar
+from events.eventCalendar import EventCalendar
 from posts.models import Article
 
 from datetime import datetime
