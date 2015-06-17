@@ -2,3 +2,4 @@ Django==1.8
 psycopg2
 django-static-precompiler
 pillow
+python-dateutil
