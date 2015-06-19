@@ -1,0 +1,44 @@
+@import "vars.less";
+@import "text.less";
+
+.main-row{
+	padding-top: calc(@header-height+20px);
+	padding-bottom: calc(@header-height + 100px);
+	background-color: @background-pleasant-neutral;
+	min-height: @mainrow-height;
+}
+
+.event-frame{
+	background-color: @frame-color;
+	margin: 10px;
+	box-shadow: 0 1px 7px;
+	a{
+		text-align: left;
+		.text-secondary-dark;
+	}
+
+	a:hover{
+		text-decoration: none;
+	}
+
+	a:visited{
+		text-decoration: none;
+	}
+
+	a:active{
+		text-decoration: none;
+	}
+
+	a:link{
+		text-decoration: none;
+	}
+}
+
+.event-frame:hover{
+		box-shadow: 0 4px 30px;
+}
+
+.remove-padding{
+   padding: 0 !important;
+   margin: 0 !important;
+}

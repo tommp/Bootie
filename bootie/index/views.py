@@ -3,6 +3,7 @@ from django.views.generic import ListView
 from django.utils.safestring import mark_safe
 from events.eventCalendar import EventCalendar
 from posts.models import Article
+from events.models import Event
 
 from datetime import datetime
 
@@ -14,9 +15,7 @@ class IndexView(ListView):
 	def get_context_data(self, **kwargs):
 		year = datetime.now().year
 		month = datetime.now().month
-		events = ""##Events.objects.order_by('my_date').filter(
-		#my_date__year=year, my_date__month=month
-		#)
+		events = Event.objects.order_by('start_date').filter(start_date__year=year, start_date__month=month)
 
 		context = super(IndexView, self).get_context_data(**kwargs)
 		articles = Article.objects.filter(is_published=True).filter(category='news').order_by('-created')

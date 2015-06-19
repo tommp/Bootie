@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/board.less' %}"/>
+{% endblock %}
+
+{% block content %}
+	<div class="row mainrow-board">
+		<div class="col-sm-8 col-sm-offset-2">
+			{% for position in board_positions %}
+				{% if position.user %}
+				<div class="row position-div">
+					{% if position.user.profile_pic %}
+						<div class="col-md-4 remove-padding">
+	        				<img class="img-responsive" href="/" src="{{position.user.profile_pic.url}}" alt="">
+	        			</div>
+					{% endif %}
+					<div class="col-sm-7 info-field">
+						<div class="row">
+							<h1 class="main-title">{{position.name}}
+							{% if position.icon %}
+								<img class=" position-icon" href="/" src="{{position.icon.url}}" alt="">
+							{% endif %}</h1>
+							
+						</div>
+						<div class="row full-name">
+							{{position.user.get_full_name}}
+						</div>
+						<div class="row position-description" style="padding-left: 10px;">
+							{{position.description|linebreaks}}
+						</div>
+						<div class="row email-row">
+							Email: <a href="mailto:{{position.user.get_email}}">{{position.user.get_email}}</a>
+						</div>
+					</div>
+				</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+    </div>
+{% endblock content %}
+
+
+{% block js %}
+{% endblock %}

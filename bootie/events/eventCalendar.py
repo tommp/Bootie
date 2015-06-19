@@ -16,14 +16,15 @@ class EventCalendar(HTMLCalendar):
             if date.today() == date(self.year, self.month, day):
                 cssclass += ' today'
             if day in self.events:
+                body = ['<a href="/event/">']
                 cssclass += ' filled'
-                body = ['<ul>']
+                body.append('<ul>')
                 for event in self.events[day]:
                     body.append('<li>')
                     body.append('<a href="%s">' % event.get_absolute_url())
-                    body.append(esc(event.title))
+                    #body.append(esc(event.name))
                     body.append('</a></li>')
-                body.append('</ul>')
+                body.append('</ul></a>')
                 return self.day_cell(cssclass, '%d %s' % (day, ''.join(body)))
             return self.day_cell(cssclass, day)
         return self.day_cell('noday', '&nbsp;')
@@ -33,7 +34,7 @@ class EventCalendar(HTMLCalendar):
         return super(EventCalendar, self).formatmonth(year, month)
 
     def group_by_day(self, events):
-        field = lambda event: event.performed_at.day
+        field = lambda event: event.start_date.day
         return dict(
             [(day, list(items)) for day, items in groupby(events, field)]
         )

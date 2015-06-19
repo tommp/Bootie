@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/event.less' %}"/>
+	<link type="text/less" rel="stylesheet" href="{% static 'css/article.less' %}"/>
+{% endblock %}
+
+{% block extra_head %}
+    <!-- facebook open graph -->
+    {% if event.image %}
+    <meta property="og:image" content="{{ event.image.url }}">
+    {% endif %}
+    <meta property="og:title" content="{{ event.name}}">
+    <meta property="og:type" content="event">
+    <meta property="og:description" content="{% spaceless %}{{ event.event_article.lead }}{% endspaceless %}">
+
+    <script src="//static.ak.fbcdn.net/connect.php/js/FB.Share"></script>
+    <!-- end facebook open graph -->
+{% endblock %}
+
+{% block content %}
+<div class="row main-container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 main-column">
+            <div class="row">
+                {% if event.event_article.image %}
+                    <div class="col-md-12">
+                        <img class="img-responsive header-image" id="header-img" src="{{event.event_article.image.url}}" alt="Event {{ event.event_article.headline }} image">
+                    </div>
+                {% endif %}
+            </div>
+            <div class="row" id="main-col">
+                <div class=" col-md-11">
+                    <h1>{{ event.event_article.headline|linebreaks }}</h1>
+                    <div class="row">
+                        <div class="byline col-xs-12">
+                            {% if event.event_article.get_authors|length > 0 %}
+                            <p>Text:&nbsp;{{ event.event_article.get_authors }}</p>
+                            {% endif %}
+                            {% if event.event_article.image %}
+                                {% if event.event_article.image.get_credit %}
+                                <p>Foto:&nbsp;{{ event.event_article.image.get_credit }}</p>
+                                {% endif %}
+                            {% endif %}
+                            {% if event.created < event.updated %}
+                                <p>Updated: {{ event.updated }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="article published">
+                        {% if event.event_article.lead %}
+                        <div class="leading-paragraph">
+                            {{ event.event_article.lead|linebreaks }}
+                        </div>
+                        {% endif %}
+                        {% if event.event_article.body %}
+                            {% autoescape on %}
+                                {{ event.event_article.body|safe|linebreaks }}
+                            {% endautoescape %}
+                        {% endif %}
+                    </div>
+                    <div class="comment-section">
+                        <!-- DisquUS -->
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                            /* * * CONFIGURATION VARIABLES * * */
+                            var disqus_shortname = 'httporgntnunopadle';
+                            
+                            /* * * DON'T EDIT BELOW THIS LINE * * */
+                            (function() {
+                                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                            })();
+                        </script>
+                        <noscript>Please enable JavaScript to view the 
+                            <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+                        </noscript>
+                         <!-- end DisquUS -->
+                    </div>
+                </div>
+                <div class="socialbuttons col-md-1 hidden-sm hidden-xs">
+                    <!-- Facebook -->
+                    <div class="socialbutton-facebook-column fixedElement">
+                        <a href="http://www.facebook.com/share.php?u=<;url>" onclick="return fbs_click()" rel="tooltip" data-placement="top" title="Del denne artikkelen på Facebook"><img style="display: block" name="socialIcon" src="{% static 'img/facebook-art.png' %}" width="50px" height="100%"></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
+
+
+{% block js %}
+    <script type="text/javascript">
+        $(window).scroll(function(e){
+
+            var scrollTo = document.getElementById("header-img").height + 90;
+            var scrollClass = '.fixedElement';
+            var staticEnd = document.getElementById("main-col").clientHeight;
+
+            $el = $(scrollClass);
+            position = $el.position();
+            if ($(this).scrollTop() > scrollTo && $el.css('position') != 'fixed'){
+                $(scrollClass).css({'position': 'fixed', "top": "20px"});
+            } else if (($(this).scrollTop() < scrollTo) && ($el.css('position') != 'absolute')){
+                $(scrollClass).css({'position': 'absolute', "top": "20px"});
+            } 
+            if (position.top >= staticEnd) {
+                var iconElements = document.getElementsByName("socialIcon");
+
+                for (var i = 0, max = iconElements.length; i < max; i++) {
+                    iconElements[i].style.display = "none";
+                }
+            } else if (position.top < staticEnd) {
+                var iconElements = document.getElementsByName("socialIcon");
+
+                for (var i = 0, max = iconElements.length; i < max; i++) {
+                    iconElements[i].style.display = "block";
+                }
+            }
+        });
+    </script>
+    <script>function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}
+    </script>
+{% endblock %}

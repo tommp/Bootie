@@ -8,7 +8,7 @@ class PaddleUserAdmin(admin.ModelAdmin):
 
 class PositionAdmin(admin.ModelAdmin):
 	fieldsets = [
-	( None, {'fields': ['name', 'user']}),
+	( None, {'fields': ['name', 'icon', 'user', 'description', 'priority']}),
     ]
 
 admin.site.register(PaddleUser, PaddleUserAdmin)

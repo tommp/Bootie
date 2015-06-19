@@ -22,6 +22,12 @@ class PaddleUser(models.Model):
 		return self.profile_pic
 	get_list_image.short_description = "Profile picture"
 
+	def get_full_name(self):
+		return self.user.first_name + ' ' + self.user.last_name
+
+	def get_email(self):
+		return self.user.email
+
 	@classmethod
 	def create(cls, profile_pic, user, paid_until):
 		user = cls(profile_pic=profile_pic, user=user, paid_until=paid_until)
@@ -30,7 +36,10 @@ class PaddleUser(models.Model):
 
 class Position(models.Model):
 	name =  models.CharField('Board position', max_length=100)
-	user = models.ForeignKey('PaddleUser', blank=True)
+	user = models.ForeignKey('PaddleUser')
+	priority = models.PositiveIntegerField('priority', help_text="The position with the hoghest priority will appear first in the frontend column.", default=0)
+	description = models.TextField('position description', default="A member of the board, beautiful and glorious. Sexy and skilled beyond measure.")
+	icon = models.ImageField('Position icon', upload_to="images/", null=True, blank=True)
 
 	def __unicode__(self):
 		return self.name

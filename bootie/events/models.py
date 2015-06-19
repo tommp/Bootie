@@ -4,6 +4,7 @@ from paddleusers.models import PaddleUser
 from django import forms
 from django.views.generic.edit import FormView
 from django.template.defaultfilters import slugify
+from django.core.urlresolvers import reverse
 
 def slugify_unique(value, model, slugfield="slug"):
 	"""
@@ -62,7 +63,9 @@ class Event(models.Model):
 
 	event_article = models.ForeignKey('posts.Article')
 
-	max_attendees = models.IntegerField(default = 1)
+	max_attendees = models.IntegerField(default = 0)
+	number_of_attendees = models.IntegerField(default = 0)
+
 	cost = models.IntegerField(default = 0)
 
 	show_attendees = models.BooleanField('Show attendees', default=True)
@@ -78,8 +81,11 @@ class Event(models.Model):
 		return 'http://%s%s' % ( Site.objects.get_current(), self.get_absolute_url())
 	get_share_url.short_description = "share url"
 
+	def get_number_of_free_spots(self):
+		return self.max_attendees - self.number_of_attendees
+
 	def get_absolute_url(self):
-		return reverse('event_detail',
+		return reverse('event_details',
 					   kwargs={'pk': self.pk, 'slug': self.slug})
 
 	def save(self, *args, **kwargs):

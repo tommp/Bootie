@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/event.less' %}"/>
+{% endblock %}
+
+{% block content %}
+	<div class="row main-row">
+		<div class="col-md-6 col-md-offset-3">
+		{% for event in events %}
+			<div class="col-md-12 event-frame">
+				<a href="{{event.get_absolute_url}}">
+					<div class="row">
+						{% if event.image %}
+						<div class="col-md-5 remove-padding">
+		    				<img class="img-responsive" href="/" src="{{event.image.url}}" alt="">
+		    			</div>
+		    			{% endif %}
+		    			<div class="col-md-7">
+		    				<div class="row textfield headline-text" style="padding-left: 5px;">
+		    					<h4>{{event.name|linebreaks}}</h4>
+		    				</div>
+		    				<div class="row textfield-small" style="padding-left: 5px;">
+		    					Start date: {{event.start_date}}
+		    				</div>
+		    				<div class="row textfield-small" style="padding-left: 5px;">
+		    					End date: {{event.end_date}}
+		    				</div>
+		    				<div class="row textfield-small" style="padding-left: 5px;">
+		    					Free spots: {{event.get_number_of_free_spots}} {% if event.cost != 0 %}, Cost: {{event.cost}}kr {% endif %}
+		    				</div>
+		    				<div class="row textfield-small" style="padding-left: 5px;">
+		    					{{event.event_article.lead|linebreaks}}
+		    				</div>
+		    			</div>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}

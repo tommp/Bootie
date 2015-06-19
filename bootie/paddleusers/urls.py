@@ -1,8 +1,9 @@
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
 
-from paddleusers.views import RegisterView
+from paddleusers.views import RegisterView, BoardView
 
 urlpatterns = [
-    url(r'^$', RegisterView.as_view()),
+    url(r'^register/$', RegisterView.as_view()),
+    url(r'^board/$', BoardView.as_view()),
 ]
