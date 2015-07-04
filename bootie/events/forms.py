@@ -3,8 +3,19 @@ import copy
 
 from django import forms
 from django.views.generic.edit import FormView
-from events.models import Event
+from events.models import Event, EventRegistrar
 from dateutil.relativedelta import relativedelta
+
+class EventRegisterForm(forms.ModelForm):
+	class Meta:
+		model = EventRegistrar
+		fields = ("car_seats",)
+
+	def save(self, commit=True):
+		register_user = super(EventRegisterForm, self).save(commit=False)
+		if commit:
+			register_user.save()
+		return register_user
 
 class EventForm(forms.ModelForm):
 

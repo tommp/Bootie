@@ -31,6 +31,18 @@
                 {% endif %}
             </div>
             <div class="row" id="main-col">
+                <div class="row">
+                    {% if user.is_authenticated %}
+                    <form action="{{event.get_registration_url}}">
+                        <button type="submit" class="btn btn-success">Register</button>
+                    </form>
+                    <form action="{{event.get_attendees_url}}">
+                        <button type="submit" class="btn btn-success">Attendees</button>
+                    </form>
+                    {% else %}
+                        Login to register for this event!
+                    {% endif %}
+                </div>
                 <div class=" col-md-11">
                     <h1>{{ event.event_article.headline|linebreaks }}</h1>
                     <div class="row">

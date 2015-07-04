@@ -36,6 +36,23 @@ class Category(models.Model):
 		return self.image
 	get_list_image.short_description = "category image"
 
+class EventRegistrar(models.Model):
+	car_seats = models.IntegerField(default=0)
+	paddle_user = models.OneToOneField('paddleusers.PaddleUser', primary_key=True)
+
+	def __unicode__(self):
+		return self.paddle_user.user.first_name + self.paddle_user.user.last_name
+
+	def __unicode__(self):
+		return self.paddle_user.user.username
+
+	def get_full_name(self):
+		return self.paddle_user.user.first_name + self.paddle_user.user.last_name
+
+	def get_email(self):
+		return self.paddle_user.user.email
+
+
 class Event(models.Model):
 
 	name = models.CharField('event name', blank=False, max_length=100)
@@ -56,7 +73,7 @@ class Event(models.Model):
 	slug = models.SlugField('slug', max_length=200, unique=True)
 	category = models.ManyToManyField('Category')
 
-	registered_users = models.ManyToManyField('paddleusers.PaddleUser', blank=True)
+	registered_users = models.ManyToManyField('EventRegistrar', blank=True)
 
 	image = models.ImageField('image', upload_to="images/", null=True, blank=True)
 	image_description = models.TextField( null=True, blank=True )
@@ -87,6 +104,14 @@ class Event(models.Model):
 	def get_absolute_url(self):
 		return reverse('event_details',
 					   kwargs={'pk': self.pk, 'slug': self.slug})
+
+	def get_registration_url(self):
+		return reverse('event_details',
+					   kwargs={'pk': self.pk, 'slug': self.slug}) + "register"
+
+	def get_attendees_url(self):
+		return reverse('event_details',
+					   kwargs={'pk': self.pk, 'slug': self.slug}) + "attendees"
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify_unique(self.name, Event)

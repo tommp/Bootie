@@ -6,7 +6,6 @@ from datetime import datetime
 
 class PaddleUser(models.Model):
 
-
 	created = models.DateTimeField('Created', auto_now_add=True)
 	paid_until = models.DateTimeField('Equipment rental valid until')
 
