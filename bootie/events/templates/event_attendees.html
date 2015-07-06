@@ -8,10 +8,11 @@
 {% block content %}
 	<div class="row main-row">
 		<div class="col-md-6 col-md-offset-3">
-			{% if event.registered_users.all %}
-				{% for attendee in event.registered_users.all %}
+			{% if event.eventregistrar_set.all %}
+				{% for attendee in event.eventregistrar_set.all %}
 					<div class="row">
-						1{{attendee.paddle_user.user.first_name}}
+						{{attendee.paddle_user.user.first_name}} {{attendee.paddle_user.user.last_name}}
+						Number of car seats: {{attendee.car_seats}}
 					</div>
 				{% endfor %}
 			{% else %}

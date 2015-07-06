@@ -6,17 +6,6 @@ from django.views.generic.edit import FormView
 from events.models import Event, EventRegistrar
 from dateutil.relativedelta import relativedelta
 
-class EventRegisterForm(forms.ModelForm):
-	class Meta:
-		model = EventRegistrar
-		fields = ("car_seats",)
-
-	def save(self, commit=True):
-		register_user = super(EventRegisterForm, self).save(commit=False)
-		if commit:
-			register_user.save()
-		return register_user
-
 class EventForm(forms.ModelForm):
 
 	TYPES = (
@@ -30,7 +19,7 @@ class EventForm(forms.ModelForm):
 		model = Event
 		fields = ('is_published', 'show_attendees', 'name', 'start_date', 'end_date', 'registration_open_date', 
 		'registration_cutoff_date', 'cancellation_cutoff_date', 'repeats', 'repeat_type',
-		'category', 'registered_users', 'image', 'image_description', 'event_article', 'max_attendees', 'cost')
+		'category', 'image', 'image_description', 'event_article', 'max_attendees', 'cost')
 
 	repeats = forms.IntegerField(min_value=0, initial=0)
 	repeat_type = forms.ChoiceField(choices=TYPES)

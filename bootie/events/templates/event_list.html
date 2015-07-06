@@ -46,11 +46,22 @@
 						</div>
 						<div class="col-md-3 textfield-small text-secondary-dark" style="padding-left: 5px;">
 							{% if user.is_authenticated %}
-								<form action="{{event.get_registration_url}}">
-									<button type="submit" class="btn btn-success">Register</button>
-								</form>
+								{% if event.is_registered %}
+									<form action="{{event.get_unregistration_url}}">
+										<button type="submit" class="btn btn-success">Unregister</button>
+									</form>
+								{% else %}
+									{% if event.get_number_of_free_spots %}
+										<form action="{{event.get_registration_url}}">
+											<button type="submit" class="btn btn-success btn-margin-top">Register</button>
+										</form>
+									{% endif %}
+								{% endif %}
 								<form action="{{event.get_attendees_url}}">
-									<button type="submit" class="btn btn-success">Attendees</button>
+									<button type="submit" class="btn btn-success btn-margin-top">Attendees</button>
+								</form>
+								<form action="{{event.get_absolute_url}}">
+									<button type="submit" class="btn btn-success btn-margin-top">Details</button>
 								</form>
 							{% else %}
 								Login to register for this event!

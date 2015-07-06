@@ -8,16 +8,20 @@
 {% block content %}
 	<div class="row main-row">
 		<div class="col-md-6 col-md-offset-3">
-			<form enctype="multipart/form-data" class="navbar-form navbar-left" action="" method="post">
-			    {{ form.non_field_errors }}
-			    <div class="form-field">
-			        {{ form.car_seats.errors }}
-			        <label for="id_car_seats">Car seats:</label>
-			        {{ form.car_seats }}
-			    </div>
-			    {% csrf_token %}
-			    <button type="submit" class="btn register-button btn-success">Register</button>
-			</form>
+			{% if user.is_authenticated %}
+				<form enctype="multipart/form-data" class="navbar-form navbar-left" action="" method="post">
+				    {{ form.non_field_errors }}
+				    <div class="form-field">
+				        {{ form.car_seats.errors }}
+				        <label for="id_car_seats">Car seats:</label>
+				        {{ form.car_seats }}
+				    </div>
+				    {% csrf_token %}
+				    <button type="submit" class="btn register-button btn-success">Register</button>
+				</form>
+			{% else %}
+				You must login to register for this event!
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

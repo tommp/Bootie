@@ -1,22 +1,67 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
-from django import forms
-from django.views.generic.edit import FormView
-from paddleusers.models import PaddleUser
+from django.views.generic.edit import CreateView, DeleteView
+from django.http import HttpResponseNotFound, HttpResponseRedirect
 
+from paddleusers.models import PaddleUser
 from events.models import Event, EventRegistrar
-from events.forms import EventRegisterForm
 from datetime import datetime
 
-class EventRegisterView(FormView):
+#Too much hacky, reduce hacky, much bad, such ugly, wow
+class EventUnRegisterView(DeleteView):
+	template_name = 'event_unregister.html'
+	model = EventRegistrar
+
+	def get_object(self, queryset=None):
+		try:
+			registrar = EventRegistrar.objects.get(paddle_user=self.request.user.paddleuser, event_id=self.kwargs['pk'])
+			return registrar
+		except:
+			return ''
+
+	def get_success_url(self):
+		event = Event.objects.get(id=self.kwargs['pk'])
+		event.number_of_attendees -= 1
+		event.save()
+		return "/events"
+
+	def delete(self, request, *args, **kwargs):
+	    self.object = self.get_object()
+	    if self.object:
+	    	self.object.delete()
+	    else:
+	    	return HttpResponseNotFound("You are not registered for this event!")
+	    return HttpResponseRedirect(self.get_success_url())
+
+class EventRegisterView(CreateView):
 	template_name = 'event_register.html'
-	form_class = EventRegisterForm
+	model = EventRegistrar
+	fields = ("car_seats",)
 
 	success_url = "/events"
 
 	def form_valid(self, form):
-		form.paddle_user = PaddleUser.objects.get(user=self.request.user)
-		return super(EventRegisterView, self).form_valid(form)
+		event = Event.objects.get(id=self.kwargs['pk'])
+		try:
+			registering_user = PaddleUser.objects.get(user=self.request.user)
+		except:
+			return HttpResponseNotFound("You are trying to register from an invalid account (not a paddleuser) contact the websjef!")
+
+		for registrar in event.eventregistrar_set.all():
+			if registrar.paddle_user == registering_user:
+				return HttpResponseNotFound("You already registered for this event!")
+
+		if event.get_number_of_free_spots():
+			registration = form.save(commit=False)
+			registration.paddle_user = registering_user
+			registration.event = event
+			registration.save()
+			event.number_of_attendees += 1
+			event.save()
+			return super(EventRegisterView, self).form_valid(form)
+		return HttpResponseNotFound("The event is full!")
+		
+
 
 class EventView(DetailView):
 
@@ -32,7 +77,6 @@ class EventView(DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(EventView, self).get_context_data(**kwargs)
-		context['form'] = EventRegisterForm
 		return context
 
 
@@ -43,10 +87,16 @@ class EventListView(ListView):
 
 	def get_context_data(self, **kwargs):
 		events = Event.objects.order_by('start_date').filter(is_published=True, end_date__gte=datetime.now())
-
+		registering_user = PaddleUser.objects.get(user=self.request.user)
 		context = super(EventListView, self).get_context_data(**kwargs)
 		if events:
 			context['events'] = events
+			for event in context['events']:
+				event.is_registered = False
+				for registrar in event.eventregistrar_set.all():
+					if registrar.paddle_user == registering_user:
+						event.is_registered = True
+						break
 		else:
 			context['events'] = ""
 		return context

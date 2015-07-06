@@ -7,10 +7,6 @@ from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 
 def slugify_unique(value, model, slugfield="slug"):
-	"""
-	copied from
-	http://stackoverflow.com/questions/1490559/django-slugified-urls-how-to-handle-collisions
-	"""
 	suffix = 0
 	potential = base = slugify(value)
 	while True:
@@ -38,7 +34,8 @@ class Category(models.Model):
 
 class EventRegistrar(models.Model):
 	car_seats = models.IntegerField(default=0)
-	paddle_user = models.OneToOneField('paddleusers.PaddleUser', primary_key=True)
+	paddle_user = models.ForeignKey('paddleusers.PaddleUser')
+	event = models.ForeignKey('Event')
 
 	def __unicode__(self):
 		return self.paddle_user.user.first_name + self.paddle_user.user.last_name
@@ -73,8 +70,6 @@ class Event(models.Model):
 	slug = models.SlugField('slug', max_length=200, unique=True)
 	category = models.ManyToManyField('Category')
 
-	registered_users = models.ManyToManyField('EventRegistrar', blank=True)
-
 	image = models.ImageField('image', upload_to="images/", null=True, blank=True)
 	image_description = models.TextField( null=True, blank=True )
 
@@ -108,6 +103,10 @@ class Event(models.Model):
 	def get_registration_url(self):
 		return reverse('event_details',
 					   kwargs={'pk': self.pk, 'slug': self.slug}) + "register"
+
+	def get_unregistration_url(self):
+		return reverse('event_details',
+					   kwargs={'pk': self.pk, 'slug': self.slug}) + "unregister"
 
 	def get_attendees_url(self):
 		return reverse('event_details',

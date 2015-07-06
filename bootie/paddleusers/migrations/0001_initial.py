@@ -28,7 +28,10 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100, verbose_name=b'Board position')),
-                ('user', models.ForeignKey(to='paddleusers.PaddleUser', blank=True)),
+                ('priority', models.PositiveIntegerField(default=0, help_text=b'The position with the hoghest priority will appear first in the frontend column.', verbose_name=b'priority')),
+                ('description', models.TextField(default=b'A member of the board, beautiful and glorious. Sexy and skilled beyond measure.', verbose_name=b'position description')),
+                ('icon', models.ImageField(upload_to=b'images/', null=True, verbose_name=b'Position icon', blank=True)),
+                ('user', models.ForeignKey(to='paddleusers.PaddleUser')),
             ],
         ),
     ]
