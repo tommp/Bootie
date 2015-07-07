@@ -68,7 +68,7 @@
                 <p>Your username and password didn't match. Please try again.</p>
             {% endif %}
             {% if user.is_authenticated %}
-                <a class="profile-link" href="/">Profile! </a>
+                <a class="profile-link" href="/users/{{user.id}}/profile/">Profile! </a>
                 <a class="logout-link" href="{% url "bootie_logout" %}">Logout</a>
             {% else %}
                 <form class="navbar-form navbar-right" role="form" action="{% url "bootie_login" %}"

@@ -87,16 +87,20 @@ class EventListView(ListView):
 
 	def get_context_data(self, **kwargs):
 		events = Event.objects.order_by('start_date').filter(is_published=True, end_date__gte=datetime.now())
-		registering_user = PaddleUser.objects.get(user=self.request.user)
 		context = super(EventListView, self).get_context_data(**kwargs)
+		
 		if events:
 			context['events'] = events
-			for event in context['events']:
-				event.is_registered = False
-				for registrar in event.eventregistrar_set.all():
-					if registrar.paddle_user == registering_user:
-						event.is_registered = True
-						break
+			try:
+				registering_user = PaddleUser.objects.get(user_id=self.request.user.id)
+				for event in context['events']:
+					event.is_registered = False
+					for registrar in event.eventregistrar_set.all():
+						if registrar.paddle_user == registering_user:
+							event.is_registered = True
+							break
+			except:
+				registering_user = None
 		else:
 			context['events'] = ""
 		return context

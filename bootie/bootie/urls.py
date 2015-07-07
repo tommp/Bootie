@@ -33,10 +33,7 @@ urlpatterns = [
         name='bootie_login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout',
         {'next_page': '/'}, name='bootie_logout'),
-
 ]
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-admin.site.site_header = 'Bootie admin'

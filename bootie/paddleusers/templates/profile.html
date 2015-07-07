@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/profile.less' %}"/>
+{% endblock %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+	<div class="row main-row">
+		<div class="row header-row">
+			<div class="col-md-12">
+				<h1 class="header-text"> Profile information </h1>
+			</div>
+		</div>
+		<div class="row info-row">
+			<div class="col-md-2">
+				<img class="img-responsive" href="/" src="{% static user.paddleuser.profile_pic.url %}" alt="You have no profile picture!">
+				<div class="row">
+					<div class="col-md-12">
+						<form action="/users/change-password/">
+							<button type="submit" class="btn btn-success button-margin">Change password</button>
+						</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<form action="/users/deactivate-profile/">
+							<button type="submit" class="btn btn-success button-margin">Delete profile</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<form action="" method="post">
+					{% csrf_token %}
+				    {{ form.as_p }}
+				    <input type="submit" value="Update" />
+				</form>
+			</div>
+		</div>
+	</div>
+	{% else %}
+		You must login to edit your profile
+	{% endif %}
+{% endblock %}

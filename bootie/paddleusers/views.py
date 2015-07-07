@@ -4,11 +4,23 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import FormView
 from django.contrib.auth.models import User
 from django.views.generic import ListView
+from django.views.generic.edit import UpdateView
 from django.utils.safestring import mark_safe
 from datetime import datetime, timedelta
 
 from paddleusers.models import PaddleUser, Position
 
+
+class UserUpdateForm(UpdateView):
+	template_name = "profile.html"
+	model = User
+	fields = ("username", "first_name", "last_name", "email")
+	success_url = "/"
+
+	error_messages = {
+		'required': "This field is required.",
+		'name_error': "Name can only contain letters.",
+	}
 
 class UserRegisterForm(forms.ModelForm):
 	error_messages = {
