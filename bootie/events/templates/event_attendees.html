@@ -8,15 +8,34 @@
 {% block content %}
 	<div class="row main-row">
 		<div class="col-md-6 col-md-offset-3">
+			<div class="row attendees-main-title">
+				<h1> Event attendees </h1>
+			</div>
 			{% if event.eventregistrar_set.all %}
-				{% for attendee in event.eventregistrar_set.all %}
-					<div class="row">
-						{{attendee.paddle_user.user.first_name}} {{attendee.paddle_user.user.last_name}}
-						Number of car seats: {{attendee.car_seats}}
-					</div>
-				{% endfor %}
+				<div class="row">
+						<table style="width: 100%">
+						{% for attendee in event.eventregistrar_set.all %}
+							<tr>
+								<td class="text-secondary-dark table-cell">
+									{% if attendee.paddle_user.user.first_name %}
+									{{attendee.paddle_user.user.first_name}} {{attendee.paddle_user.user.last_name}}
+									{% else %}
+									{{attendee.paddle_user.user.username}}
+									{% endif %}
+								</td>
+								{% if attendee.car_seats %}
+								<td class="text-secondary-dark table-cell">
+									Car seats: <b>{{attendee.car_seats}}</b>
+								</td>
+								{% endif %}
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
 			{% else %}
-				There are no registered users for this event yet :(:(:(
+				<div class="text-secondary-dark row table-cell">
+					There are no registered users for this event yet!
+				</div>
 			{% endif %}
 		</div>
 	</div>

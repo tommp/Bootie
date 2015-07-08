@@ -8,20 +8,26 @@
 {% block content %}
 	<div class="row main-row">
 		<div class="col-md-6 col-md-offset-3">
-			{% if user.is_authenticated %}
-				<form enctype="multipart/form-data" class="navbar-form navbar-left" action="" method="post">
-				    {{ form.non_field_errors }}
-				    <div class="form-field">
-				        {{ form.car_seats.errors }}
-				        <label for="id_car_seats">Car seats:</label>
-				        {{ form.car_seats }}
-				    </div>
-				    {% csrf_token %}
-				    <button type="submit" class="btn register-button btn-success">Register</button>
-				</form>
-			{% else %}
-				You must login to register for this event!
-			{% endif %}
+			<div class="row register-main-title">
+				<h1> Event registration </h1>
+			</div>
+			<div class="row">
+				{% if user.is_authenticated %}
+					<p class="text-secondary-dark"> If you have a car and want to share it with other cool kayakers, please type in the number of seats (total) in your car. If not, leave it at 0:</p>
+					<form enctype="multipart/form-data" class="navbar-form navbar-left" action="" method="post">
+					    {{ form.non_field_errors }}
+					    <div class="form-field">
+					        {{ form.car_seats.errors }}
+					        <label for="id_car_seats">Car seats:</label>
+					        {{ form.car_seats }}
+					    </div>
+					    {% csrf_token %}
+					    <button type="submit" class="btn register-button btn-success" style="margin-top: 10px;">Register</button>
+					</form>
+				{% else %}
+					You must login to register for this event!
+				{% endif %}
+			</div>
 		</div>
 	</div>
 {% endblock %}
