@@ -9,7 +9,11 @@
 	<div class="row main-row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="row register-main-title">
-					<h1> Events </h1>
+				{% if usedate %}
+					<h1> Events on the {{day}}/{{month}}/{{year}}</h1>
+				{% else %}
+					<h1> Events</h1>
+				{% endif %}
 			</div>
 		{% if events %}
 			{% for event in events %}

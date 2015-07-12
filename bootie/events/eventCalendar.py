@@ -14,18 +14,17 @@ class EventCalendar(HTMLCalendar):
         if day != 0:
             cssclass = self.cssclasses[weekday]
             if date.today() == date(self.year, self.month, day):
-                cssclass += ' today'
+                if day in self.events:
+                    cssclass += ' today-filled'
+                else:
+                    cssclass += ' today'
             if day in self.events:
-                body = ['<a href="/event/">']
-                cssclass += ' filled'
-                body.append('<ul>')
-                for event in self.events[day]:
-                    body.append('<li>')
-                    body.append('<a href="%s">' % event.get_absolute_url())
-                    #body.append(esc(event.name))
-                    body.append('</a></li>')
-                body.append('</ul></a>')
-                return self.day_cell(cssclass, '%d %s' % (day, ''.join(body)))
+                body = ['<a class="" href="/events/dayevents/%s/%s/%s/">' % (self.year, self.month, day)]
+                if not date.today() == date(self.year, self.month, day):
+                    cssclass += ' filled'
+                body.append(str(day))
+                body.append('</a>')
+                return self.day_cell(cssclass, '%s' % (''.join(body)))
             return self.day_cell(cssclass, day)
         return self.day_cell('noday', '&nbsp;')
 

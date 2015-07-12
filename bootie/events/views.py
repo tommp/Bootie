@@ -6,6 +6,7 @@ from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponse
 from paddleusers.models import PaddleUser
 from events.models import Event, EventRegistrar
 from datetime import datetime
+from django.utils import timezone
 
 #Too much hacky, reduce hacky, much bad, such ugly, wow
 class EventUnRegisterView(DeleteView):
@@ -87,8 +88,38 @@ class EventListView(ListView):
 	template_name = "event_list.html"
 
 	def get_context_data(self, **kwargs):
-		events = Event.objects.order_by('start_date').filter(is_published=True, end_date__gte=datetime.now())
+		events = Event.objects.order_by('start_date').filter(is_published=True, end_date__gte=timezone.now())
 		context = super(EventListView, self).get_context_data(**kwargs)
+		context['usedate'] = False
+		
+		if events:
+			context['events'] = events
+			try:
+				registering_user = PaddleUser.objects.get(user_id=self.request.user.id)
+				for event in context['events']:
+					event.is_registered = False
+					for registrar in event.eventregistrar_set.all():
+						if registrar.paddle_user == registering_user:
+							event.is_registered = True
+							break
+			except:
+				registering_user = None
+		else:
+			context['events'] = ""
+		return context
+
+class DayEventsView(ListView):
+
+	queryset=Event.objects.all()
+	template_name = "event_list.html"
+
+	def get_context_data(self, **kwargs):
+		events = Event.objects.order_by('start_date').filter(is_published=True, end_date__gte=timezone.now(), start_date__year=self.kwargs.get('year'), start_date__month=self.kwargs.get('month'), start_date__day=self.kwargs.get('day'))
+		context = super(DayEventsView, self).get_context_data(**kwargs)
+		context['usedate'] = True
+		context['year'] = self.kwargs.get('year')
+		context['month'] = self.kwargs.get('month')
+		context['day'] = self.kwargs.get('day')
 		
 		if events:
 			context['events'] = events

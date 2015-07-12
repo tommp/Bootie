@@ -19,7 +19,13 @@
 	box-shadow: 0 1px 7px;
 	height: @mainrow-height;
 	td {
-	   border: 5px solid @background-pleasant-neutral;
+		border: 5px solid @background-pleasant-neutral;
+		a {
+			.text-secondary-dark;
+		}
+		a:hover {
+			.text-secondary-dark;
+		}
 	}
 	td:hover{
 		z-index: 9002;
@@ -35,17 +41,21 @@
 		width: 100%;
 		height: auto;
 	}
+
 }
+
+
 
 .today{
 	background-color: @accent!important;
 }
 
 .filled{
-	background-color: @primary!important;
-	p{
-		font-size: 0.3em;
-	}
+	background-color: #FF80AB!important;
+}
+
+.today-filled {
+	background-color: #FF4067!important;
 }
 
 .month{
@@ -62,7 +72,7 @@
 }
 
 .weekend{
-	background-color:#FF80AB;
+	background-color: @primary;
 	margin: 10px;
 	width: @cell-dim;
 	height: @cell-dim;
