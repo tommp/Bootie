@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView
-from django.http import HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponseForbidden
 
 from paddleusers.models import PaddleUser
 from events.models import Event, EventRegistrar
@@ -27,10 +27,10 @@ class EventUnRegisterView(DeleteView):
 
 	def delete(self, request, *args, **kwargs):
 	    self.object = self.get_object()
-	    if self.object:
+	    if self.object and self.object.event.check_if_cancellation_availible():
 	    	self.object.delete()
 	    else:
-	    	return HttpResponseNotFound("You are not registered for this event!")
+	    	return HttpResponseForbidden()
 	    return HttpResponseRedirect(self.get_success_url())
 
 class EventRegisterView(CreateView):
@@ -51,7 +51,7 @@ class EventRegisterView(CreateView):
 			if registrar.paddle_user == registering_user:
 				return HttpResponseNotFound("You already registered for this event!")
 
-		if event.get_number_of_free_spots():
+		if event.get_number_of_free_spots() and event.check_if_registration_not_closed() and event.check_if_registration_started():
 			registration = form.save(commit=False)
 			registration.paddle_user = registering_user
 			registration.event = event
@@ -59,7 +59,8 @@ class EventRegisterView(CreateView):
 			event.number_of_attendees += 1
 			event.save()
 			return super(EventRegisterView, self).form_valid(form)
-		return HttpResponseNotFound("The event is full!")
+		else:
+			return HttpResponseForbidden()
 		
 
 

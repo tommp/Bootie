@@ -5,6 +5,7 @@ from django import forms
 from django.views.generic.edit import FormView
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 
 def slugify_unique(value, model, slugfield="slug"):
 	suffix = 0
@@ -75,7 +76,7 @@ class Event(models.Model):
 
 	event_article = models.ForeignKey('posts.Article')
 
-	max_attendees = models.IntegerField(default = 0)
+	max_attendees = models.IntegerField(default = 0, help_text="Leave at 0 to disable registration")
 	number_of_attendees = models.IntegerField(default = 0)
 
 	cost = models.IntegerField(default = 0)
@@ -92,6 +93,21 @@ class Event(models.Model):
 	def get_share_url(self):
 		return 'http://%s%s' % ( Site.objects.get_current(), self.get_absolute_url())
 	get_share_url.short_description = "share url"
+
+	def check_if_cancellation_availible(self):
+		if self.cancellation_cutoff_date > timezone.now():
+			return True
+		return False
+
+	def check_if_registration_not_closed(self):
+		if self.registration_cutoff_date > timezone.now():
+			return True
+		return False
+
+	def check_if_registration_started(self):
+		if self.registration_open_date < timezone.now():
+			return True
+		return False
 
 	def get_number_of_free_spots(self):
 		return self.max_attendees - self.number_of_attendees
