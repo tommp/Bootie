@@ -27,8 +27,8 @@ class NewsView(ListView):
 		context = super(NewsView, self).get_context_data(**kwargs)
 		articles = Article.objects.filter(is_published=True).filter(category='news').order_by('-created')
 		if articles:
-			context['leftCol'] = articles[0::2]
-			context['rightCol'] = articles[1::2]
+			context['leftCol'] = articles[1::2]
+			context['rightCol'] = articles[0::2]
 		else:
 			context['news'] = ""
 		return context
