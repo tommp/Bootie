@@ -11,17 +11,6 @@ from datetime import datetime, timedelta
 from paddleusers.models import PaddleUser, Position
 
 
-class UserUpdateForm(UpdateView):
-	template_name = "profile.html"
-	model = User
-	fields = ("username", "first_name", "last_name", "email")
-	success_url = "/"
-
-	error_messages = {
-		'required': "This field is required.",
-		'name_error': "Name can only contain letters.",
-	}
-
 class UserRegisterForm(forms.ModelForm):
 	error_messages = {
 		'password_mismatch': "The two password fields didn't match.",
@@ -89,6 +78,54 @@ class UserRegisterForm(forms.ModelForm):
 		if commit:
 			user.save()
 		return user
+
+class UserUpdateForm(forms.ModelForm):
+	error_messages = {
+		'required': "This field is required.",
+		'name_error': "Name can only contain letters.",
+	}
+
+	class Meta:
+		model = User
+		fields = ("username", "first_name", "last_name", "email")
+
+
+	def clean_first_name(self):
+		firstname = self.cleaned_data.get("first_name")
+		if not firstname:
+			raise forms.ValidationError(
+				self.error_messages['required'],
+				code='invalid',
+			)
+
+		if not firstname.isalpha():
+			raise forms.ValidationError(
+				self.error_messages['name_error'],
+				code='invalid',
+			)
+		return firstname
+
+	def clean_last_name(self):
+		lastname = self.cleaned_data.get("last_name")
+		if not lastname:
+			raise forms.ValidationError(
+				self.error_messages['required'],
+				code='invalid',
+			)
+
+		if not lastname.isalpha():
+			raise forms.ValidationError(
+				self.error_messages['name_error'],
+				code='invalid',
+			)
+		return lastname
+
+
+class UserUpdateForm(UpdateView):
+	template_name = "profile.html"
+	model = User
+	form_class = UserUpdateForm
+	success_url = "/"
 
 class RegisterView(FormView):
 	template_name = 'registration.html'
