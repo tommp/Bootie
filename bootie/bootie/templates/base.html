@@ -88,7 +88,9 @@
             <div class="side-panel">
                 <ul class="dropdown-menu-options" id="menu-options">
                     <li><a href="/events/">Events</a></li>
+                    <li><a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">Forum</a></li>
                     <li><a href="/info/">Information archive</a></li>
+                    <li><a href="/article/news/">News</a></li>
                     <li><a href="/users/board/">The board</a></li>
                     <li><a href="/tide/">Water levels</a></li>
                     <li><a href="/weather/">Weather forecast</a></li>
@@ -103,10 +105,33 @@
 
         {% block footer %}
         <div class="row footer">
-            <div class="col-md-2 col-md-offset-5 ntnui-link">
-                <a href="http://ntnui.no">
-                    <img class="ntnui-logo" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
-                </a>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-5 ntnui-link">
+                    <a href="http://ntnui.no" target="_blank">
+                        <img class="ntnui-logo img-responsive" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-5 ntnui-link">
+                    <a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">
+                        <img class="ntnui-logo img-responsive"  href="/" src="{% static 'img/FacebookLogo.png' %}" alt="FBLogo">
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 ntnui-link">
+                    <p class="text-secondary-dark footer-paragraph">
+                        Made by Tom M. Pedersen for NTNUI-Padling.
+                    </p>
+
+                    <p class="text-secondary-dark footer-paragraph">
+                        2015 &copy; NTNUI-Padling.
+                    </p>
+                    <p class="text-secondary-dark footer-paragraph">
+                        Padla på!
+                    </p>
+                </div>
             </div>
         </div>
         {% endblock %}

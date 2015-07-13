@@ -1,8 +1,10 @@
 @import "vars.less";
+@import "text.less";
 
 .main-container{
 	background-color: @background-pleasant-neutral;
 	min-height: @mainrow-height;
+	padding-bottom: 100px;
 }
 
 .main-column{
@@ -15,12 +17,68 @@
 	height: auto;
 }
 
+.top-col {
+	margin-top: calc(@header-height);
+}
+
+.news-tag {
+	font-size: 2.6em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid @accent;
+	text-align: center;
+}
+
+.img-responsive {
+	width: 100%;
+	height: auto;
+}
+
+.news-frame{
+	background-color: @frame-color;
+	margin: @frame-padding;
+	box-shadow: 0 1px 7px;
+	h2 {
+		color: @primary;
+		margin-top: 20px;
+	}
+	a{
+		text-align: left;
+		.text-secondary-dark;
+	}
+
+	a:hover{
+		text-decoration: none;
+	}
+
+	a:visited{
+		text-decoration: none;
+	}
+
+	a:active{
+		text-decoration: none;
+	}
+
+	a:link{
+		text-decoration: none;
+	}
+}
+
+.news-frame:hover{
+		box-shadow: 0 4px 30px;
+}
+
+.remove-padding{
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
 .byline {
 	border-top: 1px solid #EEE;
 	padding-top: 10px;
 	margin-bottom: 30px;
-
-
 	p {
 		float: left;
 		font-size: 14px;

@@ -87,38 +87,7 @@ class UserUpdateForm(forms.ModelForm):
 
 	class Meta:
 		model = User
-		fields = ("username", "first_name", "last_name", "email")
-
-
-	def clean_first_name(self):
-		firstname = self.cleaned_data.get("first_name")
-		if not firstname:
-			raise forms.ValidationError(
-				self.error_messages['required'],
-				code='invalid',
-			)
-
-		if not firstname.isalpha():
-			raise forms.ValidationError(
-				self.error_messages['name_error'],
-				code='invalid',
-			)
-		return firstname
-
-	def clean_last_name(self):
-		lastname = self.cleaned_data.get("last_name")
-		if not lastname:
-			raise forms.ValidationError(
-				self.error_messages['required'],
-				code='invalid',
-			)
-
-		if not lastname.isalpha():
-			raise forms.ValidationError(
-				self.error_messages['name_error'],
-				code='invalid',
-			)
-		return lastname
+		fields = ("username", "email")
 
 
 class UserUpdateForm(UpdateView):
