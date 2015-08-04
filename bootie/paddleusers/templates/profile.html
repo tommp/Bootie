@@ -10,7 +10,7 @@
 	<div class="row main-row">
 		<div class="row header-row">
 			<div class="col-md-12">
-				<h1 class="header-text text-secondary-dark"> Profile information </h1>
+				<h1 class="header-text text-secondary-dark"> Profilinformasjon </h1>
 			</div>
 		</div>
 		<div class="row info-row">
@@ -19,14 +19,14 @@
 				<div class="row">
 					<div class="col-md-12">
 						<form action="/users/change-password/">
-							<button type="submit" class="btn btn-success button-margin">Change password</button>
+							<button type="submit" class="btn btn-success button-margin">Bytt passord</button>
 						</form>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<form action="/users/deactivate-profile/">
-							<button type="submit" class="btn btn-success button-margin">Delete profile</button>
+							<button type="submit" class="btn btn-success button-margin">Slett profil</button>
 						</form>
 					</div>
 				</div>
@@ -41,6 +41,6 @@
 		</div>
 	</div>
 	{% else %}
-		You must login to edit your profile
+		Du må logge inn for å endre profilen din.
 	{% endif %}
 {% endblock %}

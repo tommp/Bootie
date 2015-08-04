@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'info',
     'paddleusers',
     'events',
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (

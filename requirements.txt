@@ -3,3 +3,4 @@ psycopg2
 django-static-precompiler
 pillow
 python-dateutil
+easy-thumbnails

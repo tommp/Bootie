@@ -9,7 +9,7 @@
 	<div class="row main-row">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="row register-main-title">
-				<h1> Event attendees </h1>
+				<h1> Deltakere </h1>
 			</div>
 			{% if event.eventregistrar_set.all %}
 				<div class="row">
@@ -25,7 +25,7 @@
 								</td>
 								{% if attendee.car_seats %}
 								<td class="text-secondary-dark table-cell">
-									Car seats: <b>{{attendee.car_seats}}</b>
+									Seter i bilen: <b>{{attendee.car_seats}}</b>
 								</td>
 								{% endif %}
 							</tr>
@@ -34,7 +34,7 @@
 				</div>
 			{% else %}
 				<div class="text-secondary-dark row table-cell">
-					There are no registered users for this event yet!
+					Dærsken, det er ingen påmeldte til dette arrangementet enda! Bli den første å dra igang lasset!
 				</div>
 			{% endif %}
 		</div>

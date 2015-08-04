@@ -15,17 +15,17 @@
 						<div class="col-md-10 col-md-offset-1 calendar remove-only-padding" id="calendar-div">
 							{{ calendar }}
 						<div class="row">
-							<div class="col-sm-9 welcome-message">
+							<div class="col-sm-11 welcome-message">
 								{% if user.first_name %}
-				                    Welcome back <a class="profile-link" href="/users/{{user.id}}/profile/">{{ user.first_name }}!</a>
+				                    Velkommen tilbake <a class="profile-link" href="/users/{{user.id}}/profile/">{{ user.first_name }}!</a>
 				                {% else %}
-				                    Welcome back <a class="profile-link" href="/users/{{user.id}}/profile/">{{ user.username }}!</a>
+				                    Velkommen tilbake <a class="profile-link" href="/users/{{user.id}}/profile/">{{ user.username }}!</a>
 				                {% endif %}
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-9 welcome-info">
-								Check out the calendar for information about future events!
+								Sjekk ut kalenderen for informasjon om fremtidige eventer!
 							</div>
 						</div>
 					</div>
@@ -41,12 +41,12 @@
 		    {% else %}
 		    <div class="row">
 		        <div class="col-md-10 col-md-offset-1 text-dark join-text">
-		        	<h1>Wanna join the crew? Register <a href="/users/register/" class="main-links">here!</a></h1>
+		        	<h1>Lyst til å bli med i gruppa? Registrer deg <a href="/users/register/" class="main-links">her!</a></h1>
 		        </div>
 		    </div>
 		    <div class="row">
 		        <div class="col-md-10 col-md-offset-2 text-dark join-text">
-		        	<h1>Follow us on <a href="https://www.facebook.com/groups/ntnuipadling/" class="main-links" target="_blank">Facebook!</a></h1>
+		        	<h1>Følg oss på <a href="https://www.facebook.com/groups/ntnuipadling/" class="main-links" target="_blank">Facebook!</a></h1>
 		        </div>
 		    </div>
 		    {% endif %}
@@ -55,7 +55,7 @@
 
         <div class=" col-md-7 frames">
         	<div class="row text-secondary-dark news-tag">
-        		Latest news!
+        		Siste nyheter!
         	</div>
         	<div class="row no-gutter top-row-pad">
         		<div class="col-md-11 index-frame">

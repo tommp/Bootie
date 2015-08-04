@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="byline col-xs-12">
                             {% if event.event_article.get_authors|length > 0 %}
-                            <p>Text:&nbsp;{{ event.event_article.get_authors }}</p>
+                            <p>Tekst:&nbsp;{{ event.event_article.get_authors }}</p>
                             {% endif %}
                             {% if event.event_article.image %}
                                 {% if event.event_article.image.get_credit %}
@@ -44,7 +44,7 @@
                                 {% endif %}
                             {% endif %}
                             {% if event.created < event.updated %}
-                                <p>Updated: {{ event.updated }}</p>
+                                <p>Oppdatert: {{ event.updated }}</p>
                             {% endif %}
                         </div>
                     </div>
@@ -65,6 +65,9 @@
                         <div id="disqus_thread"></div>
                         <script type="text/javascript">
                             /* * * CONFIGURATION VARIABLES * * */
+                            var disqus_config = function () { 
+                              this.language = "nb";
+                            };
                             var disqus_shortname = 'httporgntnunopadle';
                             
                             /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -74,8 +77,8 @@
                                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
                             })();
                         </script>
-                        <noscript>Please enable JavaScript to view the 
-                            <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+                        <noscript>Slå på Javascript for å se
+                            <a href="https://disqus.com/?ref_noscript" rel="nofollow">kommentarer muliggjort av Disqus.</a>
                         </noscript>
                          <!-- end DisquUS -->
                     </div>

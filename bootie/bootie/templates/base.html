@@ -40,13 +40,12 @@
     {% block css %}
     {% endblock %}
 
-    <div class="container-fluid">
+    <div class="container-fluid no-overflow">
 
         {% block header %}
         <div class="row header">
-
             <div class="col-md-1 dd-menu">
-                <div class="menu-button" id="main-menu">&#9776;Menu</div>
+                <div class="menu-button" id="main-menu">&#9776;Meny</div>
             </div>
 
             <div class="col-md-1 admin-tag">
@@ -65,22 +64,22 @@
 
             <div class="col-md-5 login">
             {% if form.errors %}
-                <p>Your username and password didn't match. Please try again.</p>
+                <p>Brukernavnet eller passordet var feil, vennligst prøv igjen.</p>
             {% endif %}
             {% if user.is_authenticated %}
-                <a class="profile-link" href="/users/{{user.id}}/profile/">Profile! </a>
-                <a class="logout-link" href="{% url "bootie_logout" %}">Logout</a>
+                <a class="profile-link" href="/users/{{user.id}}/profile/">Profil! </a>
+                <a class="logout-link" href="{% url "bootie_logout" %}">Logg ut</a>
             {% else %}
                 <form class="navbar-form navbar-right" role="form" action="{% url "bootie_login" %}"
                 method="post" accept-charset="utf-8">
                     <div class="form-group">
-                        <input type="text" placeholder="Username" class="form-control" name="username">
+                        <input type="text" placeholder="Brukernavn" class="form-control" name="username">
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="Password" class="form-control" name="password">
+                        <input type="password" placeholder="Passord" class="form-control" name="password">
                     </div>
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-success">Sign in</button>
+                    <button type="submit" class="btn btn-success">Logg inn</button>
                 </form>
             {% endif %}
             </div>
@@ -89,11 +88,11 @@
                 <ul class="dropdown-menu-options" id="menu-options">
                     <li><a href="/events/">Events</a></li>
                     <li><a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">Forum</a></li>
-                    <li><a href="/info/">Information archive</a></li>
-                    <li><a href="/article/news/">News</a></li>
-                    <li><a href="/users/board/">The board</a></li>
-                    <li><a href="/tide/">Water levels</a></li>
-                    <li><a href="/weather/">Weather forecast</a></li>
+                    <li><a href="/info/">Informasjonsarkiv</a></li>
+                    <li><a href="/article/news/">Nyheter</a></li>
+                    <li><a href="/users/board/">Styret</a></li>
+                    <li><a href="/tide/">Vannivå</a></li>
+                    <li><a href="/weather/">Værmeldinger</a></li>
                 </ul>
             </div>
         </div>
@@ -122,7 +121,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 ntnui-link">
                     <p class="text-secondary-dark footer-paragraph">
-                        Made by Tom M. Pedersen for NTNUI-Padling.
+                        Laget av Tom M. Pedersen for NTNUI-Padling.
                     </p>
 
                     <p class="text-secondary-dark footer-paragraph">
@@ -144,6 +143,11 @@
     $("#main-menu").click(function(){
             $("#menu-options").toggle();
         });
+    </script>
+    <script type="text/javascript">
+        var disqus_config = function () { 
+          this.language = "no";
+        };
     </script>
     {% block js %}
     {% endblock %}
