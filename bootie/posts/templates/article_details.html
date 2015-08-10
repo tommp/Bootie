@@ -8,7 +8,7 @@
 {% block extra_head %}
     <!-- facebook open graph -->
     {% if article.image %}
-    <meta property="og:image" content="{{ article.image.url }}">
+    <meta property="og:image" content="{{ article.image.image.url }}">
     {% endif %}
     <meta property="og:title" content="{{ article.headline }}">
     <meta property="og:type" content="article">
@@ -25,7 +25,7 @@
             <div class="row">
                 {% if article.image %}
                     <div class="col-md-12">
-                        <img class="img-responsive header-image" id="header-img" src="{{article.image.url}}" alt="Article {{ article.headline }} image">
+                        <img class="img-responsive header-image" id="header-img" src="{{article.image.image.url}}" alt="Article {{ article.headline }} image">
                     </div>
                 {% endif %}
             </div>

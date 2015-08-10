@@ -13,20 +13,18 @@
 					<h1 class="header-text text-secondary-dark">Generell informasjon</h1>
 				</div>
 			</div>
-			<div class="row">
 			{% for gen_art in general_articles%}
 				<a href="{{gen_art.get_absolute_url}}">
     				<div class="col-md-4">
     					<div class="info-frame">
     						{% if gen_art.image %}
-	        				<img class="img-responsive" href="/" src="{{gen_art.image.url}}" alt="">
+	        				<img class="img-responsive" href="/" src="{{gen_art.image.image.url}}" alt="">
 	        				{% endif %}
 	        				{{gen_art.headline|linebreaks}}
 	        			</div>
         			</div>
 	    		</a>
 	    	{% endfor %}
-	    	</div>
 		</div>
 
 		<div class="col-md-5 margin-info remove-padding">
@@ -40,7 +38,7 @@
     				<div class="col-md-4">
     					<div class="info-frame">
     						{% if activity.image %}
-	        				<img class="img-responsive" href="/" src="{{activity.image.url}}" alt="">
+	        				<img class="img-responsive" href="/" src="{{activity.image.image.url}}" alt="">
 	        				{% endif %}
 	        				{{activity.headline|linebreaks}}
         				</div>

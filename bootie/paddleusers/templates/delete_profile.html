@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/profile.less' %}"/>
+{% endblock %}
+
+{% block content %}
+	<div class="row main-row">
+		<div class="col-md-5 text-secondary-dark">
+			<h3>Er du sikker på at du vil slette brukerkontoen din?</h3>
+		</div>
+	</div>
+{% endblock %}

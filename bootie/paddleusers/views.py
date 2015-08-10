@@ -115,5 +115,5 @@ class BoardView(ListView):
 
 	def get_context_data(self, **kwargs):
 		context = super(BoardView, self).get_context_data(**kwargs)
-		context['board_positions'] = Position.objects.all().order_by('-priority')
+		context['board_positions'] = Position.objects.all().order_by('priority')
 		return context

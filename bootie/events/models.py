@@ -7,6 +7,8 @@ from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 
+from galleries.models import Image
+
 def slugify_unique(value, model, slugfield="slug"):
 	suffix = 0
 	potential = base = slugify(value)
@@ -24,7 +26,7 @@ class Category(models.Model):
 		ordering=['-name']
 		
 	name = models.CharField('category', blank=False, max_length=100)
-	image = models.ImageField('image', upload_to="images/", null=True)
+	image = models.ForeignKey('galleries.Image', null=True)
 
 	def __unicode__(self):
 		return self.name
@@ -32,6 +34,8 @@ class Category(models.Model):
 	def get_list_image(self):
 		return self.image
 	get_list_image.short_description = "category image"
+
+	
 
 class EventRegistrar(models.Model):
 	car_seats = models.IntegerField(default=0)
@@ -71,7 +75,7 @@ class Event(models.Model):
 	slug = models.SlugField('slug', max_length=200, unique=True)
 	category = models.ManyToManyField('Category')
 
-	image = models.ImageField('image', upload_to="images/", null=True, blank=True)
+	image = models.ForeignKey('galleries.Image', null=True, blank=True)
 	image_description = models.TextField( null=True, blank=True )
 
 	event_article = models.ForeignKey('posts.Article')
@@ -87,7 +91,7 @@ class Event(models.Model):
 		return self.name + ' (' + str(self.start_date.day) + '.' + str(self.start_date.month) + '.' + str(self.start_date.year) + ')'
 
 	def get_list_image(self):
-		return self.image
+		return self.image.image
 	get_list_image.short_description = "frontpage image"
 
 	def get_share_url(self):

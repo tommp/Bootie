@@ -47,7 +47,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #Secondary apps
+    'easy_thumbnails',
     'static_precompiler',
+    #Bootie apps
     'posts',
     'index',
     'weatherforecast',
@@ -55,7 +57,7 @@ INSTALLED_APPS = (
     'info',
     'paddleusers',
     'events',
-    'easy_thumbnails',
+    'galleries',
 )
 
 MIDDLEWARE_CLASSES = (

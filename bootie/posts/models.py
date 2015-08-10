@@ -34,7 +34,8 @@ class Article(models.Model):
 	slug = models.SlugField('slug', max_length=200, unique=True, blank=True)
 	category = models.CharField('category', choices=CATEGORIES, default=CATEGORIES[0][0], blank=True, null=True, max_length=100)
 
-	image = models.ImageField('image', upload_to="images/", null=True, blank=True)
+
+	image = models.ForeignKey('galleries.Image', null=True, blank=True)
 	image_description = models.TextField( null=True, blank=True )
 
 	headline = models.CharField('headline',  max_length=50)

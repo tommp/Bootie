@@ -9,7 +9,7 @@
 {% block extra_head %}
     <!-- facebook open graph -->
     {% if event.image %}
-    <meta property="og:image" content="{{ event.image.url }}">
+    <meta property="og:image" content="{{ event.image.image.url }}">
     {% endif %}
     <meta property="og:title" content="{{ event.name}}">
     <meta property="og:type" content="event">
@@ -26,7 +26,7 @@
             <div class="row">
                 {% if event.event_article.image %}
                     <div class="col-md-12">
-                        <img class="img-responsive header-image" id="header-img" src="{{event.event_article.image.url}}" alt="Event {{ event.event_article.headline }} image">
+                        <img class="img-responsive header-image" id="header-img" src="{{event.event_article.image.image.url}}" alt="Event {{ event.event_article.headline }} image">
                     </div>
                 {% endif %}
             </div>
