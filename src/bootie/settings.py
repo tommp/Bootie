@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     #Secondary apps
     'easy_thumbnails',
     'static_precompiler',
+    'captcha',
     #Bootie apps
     'posts',
     'index',
@@ -152,3 +153,10 @@ MEDIA_URL = '/media/'
 LOGIN_URL = 'bootie_login'
 LOGOUT_URL = 'bootie_logout'
 LOGIN_REDIRECT_URL = '/'
+
+
+
+#######################
+#       Captcha       #
+#######################
+

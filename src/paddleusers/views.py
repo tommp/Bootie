@@ -9,6 +9,7 @@ from django.utils.safestring import mark_safe
 from datetime import datetime, timedelta
 
 from paddleusers.models import PaddleUser, Position
+from captcha.fields import CaptchaField
 
 
 class UserRegisterForm(forms.ModelForm):
@@ -26,10 +27,12 @@ class UserRegisterForm(forms.ModelForm):
 	profile_picture = forms.ImageField(label="Profile picture",
 		widget=forms.ClearableFileInput, required=False)
 
+	captcha = CaptchaField(required=True)
+
 
 	class Meta:
 		model = User
-		fields = ("username", "first_name", "last_name", "email")
+		fields = ("username", "first_name", "last_name", "email", "captcha")
 
 	def clean_password2(self):
 		password1 = self.cleaned_data.get("password1")
@@ -49,7 +52,7 @@ class UserRegisterForm(forms.ModelForm):
 				code='invalid',
 			)
 
-		if not firstname.isalpha():
+		if not firstname.replace(' ','').isalpha():
 			raise forms.ValidationError(
 				self.error_messages['name_error'],
 				code='invalid',
@@ -64,7 +67,7 @@ class UserRegisterForm(forms.ModelForm):
 				code='invalid',
 			)
 
-		if not lastname.isalpha():
+		if not lastname.replace(' ','').isalpha():
 			raise forms.ValidationError(
 				self.error_messages['name_error'],
 				code='invalid',
@@ -84,6 +87,8 @@ class UserUpdateForm(forms.ModelForm):
 		'required': "This field is required.",
 		'name_error': "Name can only contain letters.",
 	}
+
+	captcha = CaptchaField(required=True)
 
 	class Meta:
 		model = User

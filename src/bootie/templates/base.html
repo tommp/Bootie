@@ -64,7 +64,6 @@
 
             <div class="col-md-5 login">
             {% if form.errors %}
-                <p>Brukernavnet eller passordet var feil, vennligst prøv igjen.</p>
             {% endif %}
             {% if user.is_authenticated %}
                 <a class="profile-link" href="/users/{{user.id}}/profile/">Profil! </a>

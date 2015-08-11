@@ -4,6 +4,7 @@
 
 {% block css %}
 	<link type="text/less" rel="stylesheet" href="{% static 'css/user_auth.less' %}"/>
+	<link type="text/less" rel="stylesheet" href="{% static 'css/text.less' %}"/>
 {% endblock %}
 
 {% block toggle_login %}{% endblock %}
@@ -11,8 +12,9 @@
 
 {% block content %}
 	<div class="row mainrow-auth">
-		<div class="col-md-6 col-md-offset-3">
-			<h1>Har du ingen bruker enda? Registrer deg <a href="/users/register/">her!</a></h1>
+		<div class="col-md-6 col-md-offset-3 text-secondary-dark">
+			<h1>Det skjedde noe feil, skriveleif?</h1>
+			<h2>Har du ingen bruker enda? Registrer deg <a href="/users/register/">her!</a></h2>
 		</div>
 	</div>
 {% endblock %}

@@ -41,6 +41,11 @@
 		        <label for="id_password2">Verify password:</label>
 		        {{ form.password2 }}
 		    </div>
+		    <div class="form-field">
+		        {{ form.captcha.errors }}
+		        <label for="id_captcha">Type in the image text:</label>
+		        {{ form.captcha }}
+		    </div>
 
 		    <div class="form-field">
 		        {{ form.profile_picture.errors }}
