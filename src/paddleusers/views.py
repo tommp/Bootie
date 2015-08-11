@@ -113,6 +113,29 @@ class RegisterView(FormView):
 		paddleuser.save()
 		return super(RegisterView, self).form_valid(form)
 
+class UserDeleteForm(forms.ModelForm):
+	error_messages = {
+		'required': "This field is required.",
+	}
+
+	captcha = CaptchaField(required=True)
+
+	class Meta:
+		model = User
+		fields = ("captcha",)
+
+
+class UserDeleteView(FormView):
+	template_name = 'delete_profile.html'
+	form_class = UserDeleteForm
+
+	success_url = "/users/profile_deleted_confirm/"
+
+	def form_valid(self, form):
+		user = self.request.user
+		user.is_active = False
+		user.save()
+		return super(UserDeleteView, self).form_valid(form)
 
 class BoardView(ListView):
 	template_name = 'board_page.html'
