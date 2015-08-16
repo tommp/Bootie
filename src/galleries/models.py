@@ -38,7 +38,7 @@ class Image(models.Model):
         ordering = ('-updated', )
 
     def __unicode__(self):
-        return self.image.name
+        return self.title
 
     TYPE_CHOICES = (
         ('photo', _('photo')),

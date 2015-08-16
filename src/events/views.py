@@ -24,7 +24,7 @@ class EventUnRegisterView(DeleteView):
 		event = Event.objects.get(id=self.kwargs['pk'])
 		event.number_of_attendees -= 1
 		event.save()
-		return "/events"
+		return "/events/1/"
 
 	def delete(self, request, *args, **kwargs):
 	    self.object = self.get_object()
@@ -39,7 +39,7 @@ class EventRegisterView(CreateView):
 	model = EventRegistrar
 	fields = ("car_seats",)
 
-	success_url = "/events"
+	success_url = "/events/1/"
 
 	def form_valid(self, form):
 		event = Event.objects.get(id=self.kwargs['pk'])

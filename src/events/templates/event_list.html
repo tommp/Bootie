@@ -19,11 +19,11 @@
 			{% for event in events %}
 				<div class="row event-frame">
 					<a href="{{event.get_absolute_url}}">
-					{% if event.image %}
 					<div class="col-md-3 remove-padding">
-						<img class="img-responsive" href="/" src="{{event.image.image.url}}" alt="">
+						{% if event.image %}
+							<img class="img-responsive" href="/" src="{{event.image.image.url}}" alt="">
+						{% endif %}
 					</div>
-					{% endif %}
 					</a>
 					<div class="col-md-9">
 						<a href="{{event.get_absolute_url}}">
