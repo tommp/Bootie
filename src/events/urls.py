@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from events.views import EventView, EventListView, EventRegisterView, AttendeesView, EventUnRegisterView, DayEventsView
 
 urlpatterns = [
-    url(r'^$', EventListView.as_view()),
+    url(r'^(?P<page>[0-9]+)/$', EventListView.as_view()),
     url(r'^(?P<pk>\d+)/(?P<slug>[^/]+?)/$', EventView.as_view(), name='event_details'),
     url(r'^(?P<pk>\d+)/(?P<slug>[^/]+?)/register/$', login_required(EventRegisterView.as_view()), name='event_register_view'),
     url(r'^(?P<pk>\d+)/(?P<slug>[^/]+?)/unregister/$', login_required(EventUnRegisterView.as_view()), name='event_unregister_view'),

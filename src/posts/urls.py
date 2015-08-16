@@ -6,6 +6,6 @@ from posts.views import ArticleView, NewsView
 urlpatterns = [
     url(r'^$', ArticleView.as_view()),
     url(r'^(?P<pk>\d+)/(?P<slug>[^/]+?)/$', ArticleView.as_view(), name='article_detail'),
-    url(r'^news/$', NewsView.as_view(), name='news_list'),
+    url(r'^news/(?P<page>[0-9]+)/$', NewsView.as_view(), name='news_list'),
 ]
 

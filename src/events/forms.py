@@ -28,6 +28,7 @@ class EventForm(forms.ModelForm):
 		saved_event = super(EventForm, self).save(commit=commit)
 		repeat_type_clean = self.cleaned_data.get('repeat_type', None)
 		repeats_clean = self.cleaned_data.get('repeats', None)
+		saved_event.save()
 		for i in range(repeats_clean):
 			if repeat_type_clean == 'weekly':
 				saved_event.start_date += relativedelta(weeks=1)

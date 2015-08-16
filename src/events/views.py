@@ -84,13 +84,15 @@ class EventView(DetailView):
 
 class EventListView(ListView):
 
-	queryset=Event.objects.all()
+	queryset = Event.objects.order_by('start_date').filter(is_published=True, end_date__gte=timezone.now())
 	template_name = "event_list.html"
+	paginate_by = 10
 
 	def get_context_data(self, **kwargs):
-		events = Event.objects.order_by('start_date').filter(is_published=True, end_date__gte=timezone.now())
 		context = super(EventListView, self).get_context_data(**kwargs)
 		context['usedate'] = False
+
+		events = context['page_obj']
 		
 		if events:
 			context['events'] = events
