@@ -4,7 +4,8 @@ from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views
 
-from paddleusers.views import RegisterView, BoardView, UserUpdateForm, UserDeleteView
+from paddleusers.views import BoardView
+from paddleusers.forms import RegisterView, UserUpdateForm, UserDeleteView
 
 urlpatterns = [
     url(r'^register/$', RegisterView.as_view()),

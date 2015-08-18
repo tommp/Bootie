@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load imagekit %}
 
 {% block css %}
 	<link type="text/less" rel="stylesheet" href="{% static 'css/profile.less' %}"/>
@@ -15,18 +16,11 @@
 		</div>
 		<div class="row info-row">
 			<div class="col-md-2">
-				{% if user.paddleuserprofile_pic %}
-				<img class="img-responsive" href="/" src="{% static user.paddleuser.profile_pic.url %}" alt="You have no profile picture!">
+				{% if user.paddleuser.profile_pic %}
+					{% thumbnail '0x200' user.paddleuser.profile_pic -- alt="You have no profile picture!" id="header-img" class="img-responsive" style="width: 100%;" %}
 				{% else %}
 				{% endif %}
 
-				<div class="row">
-					<div class="col-md-12">
-						<form action="/users/change_profilepic/">
-							<button type="submit" class="btn btn-success button-margin">Bytt profilbilde</button>
-						</form>
-					</div>
-				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<form action="/users/change_password/">
@@ -43,10 +37,40 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<form action="" method="post">
-					{% csrf_token %}
-				    {{ form.as_p }}
-				    <input type="submit" value="Update" />
+				<form enctype="multipart/form-data" class="navbar-form navbar-left" action="" method="post">
+				    {{ form.non_field_errors }}
+				     <div class="form-field">
+				        {{ form.first_name.errors }}
+				        <label for="id_first_name">Fornavn:</label>
+				        {{ form.first_name }}
+				    </div>
+				    <div class="form-field">
+				        {{ form.last_name.errors }}
+				        <label for="id_last_name">Etternavn:</label>
+				        {{ form.last_name }}
+				    </div>
+				    <div class="form-field">
+				        {{ form.email.errors }}
+				        <label for="id_email">E-post	:</label>
+				        {{ form.email }}
+				    </div>
+				    <div class="form-field">
+				        {{ form.profile_picture.errors }}
+				        <label for="id_profile_picture">Last opp ett nytt profilbilde:</label>
+				        {{ form.profile_picture }}
+				    </div>
+				    <div class="form-field">
+				        {{ form.delete_profile_pic.errors }}
+				        <label for="id_delete_profile_pic">Slett profilbildet:</label>
+				        {{ form.delete_profile_pic }}
+				    </div>
+				    <div class="form-field">
+				        {{ form.captcha.errors }}
+				        <label for="id_captcha">Skiv inn bildeteksten:</label>
+				        {{ form.captcha }}
+				    </div>
+				    {% csrf_token %}
+				    <button style="margin-top: 15px;" type="submit" class="btn register-button btn-success">Oppdater</button>
 				</form>
 			</div>
 		</div>

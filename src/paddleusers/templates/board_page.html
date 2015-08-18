@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load imagekit %}
 
 {% block css %}
 	<link type="text/less" rel="stylesheet" href="{% static 'css/board.less' %}"/>
@@ -16,7 +17,7 @@
 				<div class="row position-div">
 					{% if position.user.profile_pic %}
 						<div class="col-md-4 remove-padding">
-	        				<img class="img-responsive" href="/" src="{{position.user.profile_pic.url}}" alt="">
+	        				{% thumbnail '0x350' position.user.profile_pic -- alt=""  class="img-responsive" style="width: 100%;" %}
 	        			</div>
 					{% endif %}
 					<div class="col-sm-7 info-field">

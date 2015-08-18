@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load imagekit %}
 
 {% block css %}
 	<link type="text/less" rel="stylesheet" href="{% static 'css/event.less' %}"/>
@@ -26,7 +27,7 @@
             <div class="row">
                 {% if event.event_article.image %}
                     <div class="col-md-12">
-                        <img class="img-responsive header-image" id="header-img" src="{{event.event_article.image.image.url}}" alt="Event {{ event.event_article.headline }} image">
+                        {% thumbnail '0x500' event.event_article.image.image -- alt="Article {{ event.event_article.headline }} image" id="header-img" class="img-responsive header-image" %}
                     </div>
                 {% endif %}
             </div>

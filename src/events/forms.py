@@ -41,7 +41,7 @@ class EventForm(forms.ModelForm):
 				saved_event.end_date += relativedelta(days=1)
 				saved_event.registration_open_date += relativedelta(days=1)
 				saved_event.registration_cutoff_date += relativedelta(days=1)
-				cancellation_cutoff_date += relativedelta(days=1)
+				saved_event.cancellation_cutoff_date += relativedelta(days=1)
 			elif repeat_type_clean == 'monthly':
 				saved_event.start_date += relativedelta(months=1)
 				saved_event.end_date += relativedelta(months=1)

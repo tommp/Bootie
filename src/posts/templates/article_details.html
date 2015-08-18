@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load imagekit %}
 
 {% block css %}
     <link type="text/less" rel="stylesheet" href="{% static 'css/article.less' %}"/>
@@ -25,7 +26,7 @@
             <div class="row">
                 {% if article.image %}
                     <div class="col-md-12">
-                        <img class="img-responsive header-image" id="header-img" src="{{article.image.image.url}}" alt="Article {{ article.headline }} image">
+                        {% thumbnail '0x750' article.image.image -- alt="Article {{ article.headline }} image" id="header-img" class="img-responsive header-image" %}
                     </div>
                 {% endif %}
             </div>

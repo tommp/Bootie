@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load imagekit %}
 
 {% block css %}
 	<link type="text/less" rel="stylesheet" href="{% static 'css/info.less' %}"/>
@@ -18,7 +19,7 @@
     				<div class="col-md-4">
     					<div class="info-frame">
     						{% if gen_art.image %}
-	        				<img class="img-responsive" href="/" src="{{gen_art.image.image.url}}" alt="">
+	        					{% thumbnail '0x100' gen_art.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
 	        				{% endif %}
 	        				{{gen_art.headline|linebreaks}}
 	        			</div>
@@ -38,7 +39,7 @@
     				<div class="col-md-4">
     					<div class="info-frame">
     						{% if activity.image %}
-	        				<img class="img-responsive" href="/" src="{{activity.image.image.url}}" alt="">
+	        					{% thumbnail '0x100' activity.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
 	        				{% endif %}
 	        				{{activity.headline|linebreaks}}
         				</div>

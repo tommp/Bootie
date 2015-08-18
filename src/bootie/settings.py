@@ -47,7 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #Secondary apps
-    'easy_thumbnails',
+    'imagekit',
     'static_precompiler',
     'captcha',
     #Bootie apps
@@ -160,3 +160,9 @@ LOGIN_REDIRECT_URL = '/'
 #       Captcha       #
 #######################
 
+#######################
+#   Easy thumbnails   #
+#######################
+
+THUMBNAIL_BASEDIR = 'thumbs'
+THUMBNAIL_DEBUG = False

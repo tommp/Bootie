@@ -80,16 +80,16 @@
 	        <div class="pagination col-md-12">
 	            <div class="page-links col-md-12">
 	            	<div class="row">
-	            		<div class="col-md-1 col-md-offset-5">
+	            		<div class="col-md-1 col-md-offset-4 page-buttons">
 		                	{% if page_obj.has_previous %}
 			                    <a href="/article/news/{{ page_obj.previous_page_number }}">
 			                    <button type="" class="btn btn-success btn-margin-top" style="margin-bottom: 10px;">Forrige</button></a>
 		                	{% endif %}
 		                </div>
-		                <div class="page-current col-md-1">
-		                    Side {{ page_obj.number }} av {{ page_obj.paginator.num_pages }}.
+		                <div class="page-current col-md-2 text-secondary-dark">
+		                    Side {{ page_obj.number }} av {{ page_obj.paginator.num_pages }}
 		                </div>
-		                <div class="col-md-1">
+		                <div class="col-md-1 page-buttons">
 		                	{% if page_obj.has_next %}
 		                    	<a href="/article/news/{{ page_obj.next_page_number }}"><button type="" class="btn btn-success btn-margin-top" style="margin-bottom: 10px;">Neste</button></a>
 		                	{% endif %}
