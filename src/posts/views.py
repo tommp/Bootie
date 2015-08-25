@@ -19,7 +19,7 @@ class ArticleView(DetailView):
 class NewsView(ListView):
 	queryset=Article.objects.filter(is_published=True).filter(category='news').order_by('-created')
 	template_name = "news.html"
-	paginate_by = 2
+	paginate_by = 20
 
 	def get_context_data(self, **kwargs):
 		context = super(NewsView, self).get_context_data(**kwargs)

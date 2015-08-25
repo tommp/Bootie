@@ -24,10 +24,18 @@
 	margin-top: @header-height;
 }
 
+.instagram-header{
+	overflow: hidden;
+	background-color: @background-pleasant-neutral;
+	margin-top: @header-height;
+	text-align: center;
+}
+
 .index-frame{
 	background-color: @frame-color;
 	margin: @frame-padding;
 	box-shadow: 0 1px 7px;
+	z-index: 10;
 	a{
 		text-align: left;
 		.text-secondary-dark;
@@ -54,17 +62,24 @@
 		box-shadow: 0 4px 30px;
 }
 
-
-.top-row-pad{
-	margin-top: 10px;
-	border-top: 1px solid @accent;
+.news-tag{
+	border-bottom: 1px solid @accent;
+	font-size: 1.8em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 4px;
 }
 
-.news-tag{
-	font-size: 2.6em;
+.instagram-tag{
+	border-bottom: 1px solid @accent;
+	font-size: 1.8em;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 20px;
+}
+
+.instagram-frame{
+	margin-top: 6px;
 }
 
 .main-links{

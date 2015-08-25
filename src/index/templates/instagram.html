@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/index.less' %}"/>
+{% endblock %}
+
+{% block content %}
+	<div class="row instagram-header">
+		<div class="col-md-12" style="margin-top: 20px;">
+			<div class="row news-tag">
+				<div class="col-md-10 col-md-offset-1 text-secondary-dark">
+					Bilder fra #ntnuipadling på instagram!
+				</div>
+			</div>
+			<div class="row" style="margin-top: 30px;">
+				<div class="col-md-10 col-md-offset-1">
+					<script src="http://snapwidget.com/js/snapwidget.js"></script>
+					<iframe src="http://snapwidget.com/bd/?h=bnRudWlwYWRsaW5nfGlufDIwMHw1fDYwfHx5ZXN8MjB8bm9uZXxvblN0YXJ0fHllc3x5ZXM=&ve=250815" title="Instagram Widget" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%;"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

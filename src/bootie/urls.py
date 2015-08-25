@@ -26,7 +26,6 @@ urlpatterns = [
     url(r'^article/', include('posts.urls')),
     url(r'^events/', include('events.urls')),
     url(r'^weather/', include('weatherforecast.urls')),
-    url(r'^tide/', include('tideforecast.urls')),
     url(r'^info/', include('info.urls')),
     url(r'^users/', include('paddleusers.urls')),
     url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'},

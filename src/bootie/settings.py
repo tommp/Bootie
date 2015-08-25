@@ -54,7 +54,6 @@ INSTALLED_APPS = (
     'posts',
     'index',
     'weatherforecast',
-    'tideforecast',
     'info',
     'paddleusers',
     'events',
