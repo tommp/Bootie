@@ -3,9 +3,6 @@ from bootie.settings import *
 SECRET_KEY_DIR = '/etc/secret_key.txt'
 DB_INFO_DIR = BASE_DIR + '/bootie/db_info.txt'
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 with open(SECRET_KEY_DIR) as f:
     SECRET_KEY = f.read().strip()
