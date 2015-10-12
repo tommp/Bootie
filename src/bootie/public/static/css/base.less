@@ -1,0 +1,217 @@
+@import "vars.less";
+@import "text.less";
+
+*{font-family: 'Roboto', sans-serif;}
+
+.dropdown-menu-options {
+	display: none;
+	text-align: left;
+	background-color: @primary!important;
+	position: fixed!important;
+	z-index: 100;
+	left: 0%;
+	width: auto;
+	height: 100%;
+	padding-right: 30px;
+	padding-top: 30px;
+	box-shadow: 0 1px 7px;
+	a:hover{
+		color: #000000!important;
+	}
+}
+
+.row {
+	overflow: hidden;
+}
+
+.dropdown-toggle:hover{
+	box-shadow: 0 2px 15px;
+}
+
+.header{
+	background-color: @primary;
+	height: @header-height;
+	box-shadow: 0 1px 7px;
+	z-index: 9001;
+	position: fixed!important;
+	width: 100%;
+}
+
+.footer{
+	background-color: @primary-hue-light;
+	height: @footer-height;
+	box-shadow: 0 1px 7px;
+	z-index: 9001;
+	position: absolute;
+	width: 100%;
+}
+
+.arrow-down {
+	margin-top: 10px;
+	width: 0; 
+	height: 0; 
+	background-color: @primary-hue-dark;
+	border-left: @arrow-size solid transparent;
+	border-right: @arrow-size solid transparent;
+	border-top: @arrow-size solid @accent;
+	box-shadow: 0 2px 15px;
+}
+
+.arrow-down:hover{
+		box-shadow: 0 4px 30px;
+}
+
+
+@media (max-width: 767px) { 
+	.dropdown.custom:hover .dropdown-menu {
+	  visibility: visible;
+	  display:block;
+	  border-radius:0;
+	}
+}
+
+.side-panel {
+	margin-top: @header-height;
+	position: relative;
+	z-index: 100;
+}
+
+.menu-button {
+	font-weight: bold;
+	text-align: left;
+	color: #FFF!important;
+	font-size: 2em;
+	cursor: pointer; 
+	cursor: hand;
+}
+
+.menu-button:hover {
+	color: #000000!important;
+}
+
+
+li {
+	list-style-type: none;
+	text-align: left;
+	font-weight: bold;
+	a{
+		text-align: left;
+		color: #FFF!important;
+		font-size: 2em;
+	}
+
+	a:hover{
+		text-decoration: none;
+	}
+
+	a:visited{
+		text-decoration: none;
+	}
+
+	a:active{
+		text-decoration: none;
+	}
+
+	a:link{
+		text-decoration: none;
+	}
+}
+
+.dd-menu {
+	margin-top: 10px;
+	float: left;
+}
+
+.ntnui-logo{
+	margin-top: 40px;
+	height: calc(@header-height - 20px);
+	width: auto;
+}
+
+.main-top-logo{
+	margin-top: 10px;
+	height: calc(@header-height - 20px);
+	width: 90px;
+	height: auto;
+	display:block;
+    margin:auto;
+}
+
+.ntnui-logo:hover{
+	opacity: 1;
+}
+
+.footer-paragraph {
+	margin-top: 40px;
+	text-align: center;
+}
+
+.login{
+	text-align: right;
+	font-weight: bold;
+	margin-top: 7px;
+	.text-light;
+	a{
+		text-align: left;
+		font-size: 2em;
+		.text-light;
+	}
+
+	a:hover{
+		text-decoration: none;
+	}
+
+	a:visited{
+		text-decoration: none;
+	}
+
+	a:active{
+		text-decoration: none;
+	}
+
+	a:link{
+		text-decoration: none;
+	}
+}
+
+.admin-tag{
+	text-align: right;
+	font-weight: bold;
+	margin-top: 10px;
+	a{
+		text-align: left;
+		font-size: 2em;
+		.text-light;
+	}
+
+	a:hover{
+		text-decoration: none;
+		color: #000000!important;
+	}
+
+	a:visited{
+		text-decoration: none;
+	}
+
+	a:active{
+		text-decoration: none;
+	}
+
+	a:link{
+		text-decoration: none;
+	}
+}
+
+.logout-link{
+	.text-secondary-light;
+	font-size: 1.2em!important;
+}
+
+.logout-link:hover{
+	color: #000000!important;
+}
+
+.profile-link:hover{
+	color: #000000!important;
+	
+}
