@@ -1,5 +1,0 @@
-bootiedb
-bootie
-beer
-localhost
- 
