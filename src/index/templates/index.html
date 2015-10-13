@@ -10,7 +10,7 @@
 {% block content %}
 	<div class="row middle-row">
 		<div class="col-md-5">
-			<div class="row">
+			<div class="row hidden-sm">
 				{% if user.is_authenticated %}
 					<div class="col-md-10 calendar-container">
 						<div class="row">
@@ -34,18 +34,17 @@
 						</div>
 					</div>
 				{% else %}
-		        	<img class="main-logo img-responsive" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
-		        	<h1 class="logo-text">Padling</h1>
+		        	<img class="main-logo img-responsive" href="/" src="{% static 'img/FPntnuipadling.png' %}" alt="Logo">
 		    	{% endif %}
 		    </div>
 		    {% if user.is_authenticated %}
 		    {% else %}
-		    <div class="row">
+		    <div class="row hidden-sm">
 		        <div class="col-md-10 col-md-offset-1 text-dark join-text">
 		        	<h1>Lyst til å bli med i gruppa? Registrer deg <a href="/users/register/" class="main-links">her!</a></h1>
 		        </div>
 		    </div>
-		    <div class="row">
+		    <div class="row hidden-sm">
 		        <div class="col-md-10 col-md-offset-1 text-dark join-text">
 		        	<h1>Følg oss på <a href="https://www.facebook.com/groups/ntnuipadling/" class="main-links" target="_blank">Facebook!</a></h1>
 		        </div>
@@ -53,7 +52,7 @@
 		    {% endif %}
 	    </div>
 
-        <div class=" col-md-7 frames">
+        <div class=" col-md-7 frames hidden-sm">
         	<div class="row text-secondary-dark instagram-tag">
         		<div class="col-md-12">
         			Siste fra <a href="/instagram/">#ntnuipadling</a> på instagram!
