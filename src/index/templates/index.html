@@ -8,9 +8,9 @@
 {% endblock %}
 
 {% block content %}
-	<div class="row middle-row">
+	<div class="row middle-row visible-lg">
 		<div class="col-md-5">
-			<div class="row hidden-sm">
+			<div class="row">
 				{% if user.is_authenticated %}
 					<div class="col-md-10 calendar-container">
 						<div class="row">
@@ -39,12 +39,12 @@
 		    </div>
 		    {% if user.is_authenticated %}
 		    {% else %}
-		    <div class="row hidden-sm">
+		    <div class="row">
 		        <div class="col-md-10 col-md-offset-1 text-dark join-text">
 		        	<h1>Lyst til å bli med i gruppa? Registrer deg <a href="/users/register/" class="main-links">her!</a></h1>
 		        </div>
 		    </div>
-		    <div class="row hidden-sm">
+		    <div class="row">
 		        <div class="col-md-10 col-md-offset-1 text-dark join-text">
 		        	<h1>Følg oss på <a href="https://www.facebook.com/groups/ntnuipadling/" class="main-links" target="_blank">Facebook!</a></h1>
 		        </div>
@@ -52,7 +52,7 @@
 		    {% endif %}
 	    </div>
 
-        <div class=" col-md-7 frames hidden-sm">
+        <div class=" col-md-7 frames">
         	<div class="row text-secondary-dark instagram-tag">
         		<div class="col-md-12">
         			Siste fra <a href="/instagram/">#ntnuipadling</a> på instagram!
