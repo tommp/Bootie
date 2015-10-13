@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.views.generic.edit import UpdateView
 from django.utils.safestring import mark_safe
 from datetime import datetime, timedelta
+from django.contrib.auth import authenticate, login
 
 from paddleusers.models import PaddleUser
 from captcha.fields import CaptchaField
@@ -133,6 +134,8 @@ class RegisterView(FormView):
 		new_user = form.save()
 		paddleuser = PaddleUser.create(profile_pic=form.cleaned_data["profile_picture"], user= new_user, paid_until=(datetime.now()+timedelta(days=7)))
 		paddleuser.save()
+		user = authenticate(username=form.cleaned_data["username"], password=form.cleaned_data["password1"])
+		login(self.request, user)
 		return super(RegisterView, self).form_valid(form)
 
 class UserDeleteForm(forms.ModelForm):
