@@ -19,7 +19,7 @@
     				<div class="col-md-4">
     					<div class="info-frame">
     						{% if gen_art.image %}
-	        					{% thumbnail '0x100' gen_art.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
+	        					{% thumbnail '0x150' gen_art.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
 	        				{% endif %}
 	        				{{gen_art.headline|linebreaks}}
 	        			</div>
@@ -39,7 +39,7 @@
     				<div class="col-md-4">
     					<div class="info-frame">
     						{% if activity.image %}
-	        					{% thumbnail '0x100' activity.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
+	        					{% thumbnail '0x150' activity.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
 	        				{% endif %}
 	        				{{activity.headline|linebreaks}}
         				</div>
