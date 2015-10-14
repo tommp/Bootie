@@ -9,7 +9,7 @@ class EventAdmin(admin.ModelAdmin):
 	fieldsets = [
 	( None, {'fields': ['is_published', 'show_attendees', 'name', 'start_date', 'end_date', 'registration_open_date', 
 		'registration_cutoff_date', 'cancellation_cutoff_date', 'repeats', 'repeat_type',
-		'category',  'image', 'image_description', 'event_article', 'max_attendees', 'cost']}),
+		'category',  'image', 'image_description', 'event_article', 'max_attendees', 'cost', 'authors']}),
 	]
 
 class CategoryAdmin(admin.ModelAdmin):

@@ -6,6 +6,7 @@ from django.views.generic.edit import FormView
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from django.conf import settings
 
 from galleries.models import Image
 
@@ -86,6 +87,8 @@ class Event(models.Model):
 	cost = models.IntegerField(default = 0)
 
 	show_attendees = models.BooleanField('Show attendees', default=True)
+
+	authors = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=('authors'), blank=True, related_name='%(app_label)s_%(class)s_authors')
 
 	def __unicode__(self):
 		return self.name + ' (' + str(self.start_date.day) + '.' + str(self.start_date.month) + '.' + str(self.start_date.year) + ')'

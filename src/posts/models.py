@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+from django.conf import settings
 
 def slugify_unique(value, model, slugfield="slug"):
 	"""
@@ -38,6 +39,8 @@ class Article(models.Model):
 	image = models.ForeignKey('galleries.Image', null=True, blank=True)
 	image_description = models.TextField( null=True, blank=True )
 
+	authors = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=('authors'), blank=True, related_name='%(app_label)s_%(class)s_authors')
+
 	headline = models.CharField('headline',  max_length=50)
 	lead = models.CharField('lead', blank=True, max_length=100)
 	body = models.TextField('body', blank=True)
@@ -56,6 +59,17 @@ class Article(models.Model):
 	def get_share_url(self):
 		return 'http://%s%s' % ( Site.objects.get_current(), self.get_absolute_url())
 	get_share_url.short_description = "share url"
+
+	def get_authors(self):
+		tekst = ""
+		if len(self.authors.all()) > 0:
+			if len(tekst) > 0:
+				tekst += ', '
+			tekst += ', '.join([k.get_full_name().strip() for k in self.authors.all()])
+			return tekst
+		else:
+			return tekst
+	get_authors.short_description = "get authors"
 
 	def get_absolute_url(self):
 		return reverse('article_detail',
