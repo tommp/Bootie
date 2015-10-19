@@ -99,13 +99,16 @@ WSGI_APPLICATION = 'bootie.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+with open(DB_INFO_DIR) as f:
+    content = [x.strip('\n') for x in f.readlines()]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bootiedb',
-        'USER': 'bootie',
-        'PASSWORD': 'beer',
-        'HOST': 'localhost',
+        'NAME': content[0],
+        'USER': content[1],
+        'PASSWORD': content[2],
+        'HOST': content[3],
         'PORT': '',
 
     }

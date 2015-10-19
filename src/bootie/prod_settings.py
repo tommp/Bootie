@@ -16,21 +16,6 @@ CSRF_COOKIE_HTTPONLY = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
-with open(DB_INFO_DIR) as f:
-    content = [x.strip('\n') for x in f.readlines()]
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': content[0],
-        'USER': content[1],
-        'PASSWORD': content[2],
-        'HOST': content[3],
-        'PORT': '',
-
-    }
-}
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
