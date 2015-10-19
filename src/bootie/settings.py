@@ -18,12 +18,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILE_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.dirname(__file__) 
 DB_INFO_DIR = BASE_DIR + '/bootie/db_info.txt'
+SECRET_KEY_DIR = '/etc/secret_key.txt'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'f*p2pbwnr&e5@xc$_^!&-ty_s*!lvxlm67n#yomnbmq6z@cco#'
+with open(SECRET_KEY_DIR) as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
