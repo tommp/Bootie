@@ -2,12 +2,14 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
         ('galleries', '__first__'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -24,6 +26,7 @@ class Migration(migrations.Migration):
                 ('headline', models.CharField(max_length=50, verbose_name=b'headline')),
                 ('lead', models.CharField(max_length=100, verbose_name=b'lead', blank=True)),
                 ('body', models.TextField(verbose_name=b'body', blank=True)),
+                ('authors', models.ManyToManyField(related_name='posts_article_authors', verbose_name=b'authors', to=settings.AUTH_USER_MODEL, blank=True)),
                 ('image', models.ForeignKey(blank=True, to='galleries.Image', null=True)),
             ],
         ),

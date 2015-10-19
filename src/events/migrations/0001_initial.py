@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
@@ -9,6 +10,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('paddleusers', '__first__'),
         ('posts', '__first__'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('galleries', '__first__'),
     ]
 
@@ -45,6 +47,7 @@ class Migration(migrations.Migration):
                 ('number_of_attendees', models.IntegerField(default=0)),
                 ('cost', models.IntegerField(default=0)),
                 ('show_attendees', models.BooleanField(default=True, verbose_name=b'Show attendees')),
+                ('authors', models.ManyToManyField(related_name='events_event_authors', verbose_name=b'authors', to=settings.AUTH_USER_MODEL, blank=True)),
                 ('category', models.ManyToManyField(to='events.Category')),
                 ('event_article', models.ForeignKey(to='posts.Article')),
                 ('image', models.ForeignKey(blank=True, to='galleries.Image', null=True)),
