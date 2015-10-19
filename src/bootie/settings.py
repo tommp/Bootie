@@ -17,6 +17,7 @@ GIT_ROOT = os.path.abspath(__file__).rsplit(os.path.sep, 3)[0]
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILE_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.dirname(__file__) 
+DB_INFO_DIR = BASE_DIR + '/bootie/db_info.txt'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/

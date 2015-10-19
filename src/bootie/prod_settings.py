@@ -1,7 +1,6 @@
 from bootie.settings import *
 
 SECRET_KEY_DIR = '/etc/secret_key.txt'
-DB_INFO_DIR = BASE_DIR + '/bootie/db_info.txt'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 with open(SECRET_KEY_DIR) as f:
