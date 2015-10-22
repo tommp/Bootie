@@ -21,8 +21,10 @@ class IndexView(ListView):
 		articles = Article.objects.filter(is_published=True).filter(category='news').order_by('-created')
 		if articles:
 			context['latest'] = articles[0]
-			context['news_left'] = articles[1]
-			context['news_right'] = articles[2]
+			if len(articles) > 1:
+				context['news_left'] = articles[1]
+			if len(articles) > 2:
+				context['news_right'] = articles[2]
 		else:
 			context['latest'] = ""
 			context['news_left'] = ""
