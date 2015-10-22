@@ -43,8 +43,12 @@
                                 <p>Foto:&nbsp;{{ article.image.get_credit }}</p>
                                 {% endif %}
                             {% endif %}
-                            {% if article.pub_date < article.updated %}
+                            {% if article.created < article.updated %}
                                 <p>Oppdatert: {{ article.updated }}</p>
+                            {% else %}
+                                {% if article.created %}
+                                    <p>Publisert den: {{ article.created }}</p>
+                                {% endif %}
                             {% endif %}
                         </div>
                     </div>
