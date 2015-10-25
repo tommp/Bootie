@@ -19,6 +19,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
 from django.core.urlresolvers import reverse_lazy
+from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin', include(admin.site.urls)),
@@ -33,6 +34,7 @@ urlpatterns = [
     url(r'^logout/$', 'django.contrib.auth.views.logout',
         {'next_page': '/'}, name='bootie_logout'),
     url(r'^captcha/', include('captcha.urls')),
+    url(r'^english/', TemplateView.as_view(template_name="english_info.html")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
