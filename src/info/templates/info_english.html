@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load imagekit %}
+
+{% block css %}
+	<link type="text/less" rel="stylesheet" href="{% static 'css/info.less' %}"/>
+{% endblock %}
+
+{% block content %}
+	<div class="row main-background">
+		<div class="col-md-5 col-md-offset-1 margin-info left-col">
+			<div class="row">
+				<div class="col-md-12 main-text-general">
+					<h1 class="header-text text-secondary-dark">General information</h1>
+				</div>
+			</div>
+			{% for gen_art in general_articles%}
+				<a href="{{gen_art.get_absolute_url}}">
+    				<div class="col-md-4">
+    					<div class="info-frame">
+    						{% if gen_art.image %}
+	        					{% thumbnail '0x150' gen_art.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
+	        				{% endif %}
+	        				{{gen_art.headline|linebreaks}}
+	        			</div>
+        			</div>
+	    		</a>
+	    	{% endfor %}
+		</div>
+
+		<div class="col-md-5 margin-info remove-padding">
+			<div class="row">
+				<div class="col-md-12 main-text-activities">
+					<h1 class="header-text text-secondary-dark">Information about activities</h1>
+				</div>
+			</div>
+			{% for activity in activities %}
+				<a href="{{activity.get_absolute_url}}">
+    				<div class="col-md-4">
+    					<div class="info-frame">
+    						{% if activity.image %}
+	        					{% thumbnail '0x150' activity.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
+	        				{% endif %}
+	        				{{activity.headline|linebreaks}}
+        				</div>
+        			</div>
+	    		</a>
+	    	{% endfor %}
+		</div>
+
+    </div>
+{% endblock content %}

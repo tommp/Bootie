@@ -25,6 +25,8 @@ class Article(models.Model):
 		('news', 'News article'),
 		('info_general', 'General information'),
 		('info_activity', 'Activity information'),
+		('info_general_english', 'General information in english'),
+		('info_activity_english', 'Activity information in english'),
 	)
 
 	created = models.DateTimeField('created', auto_now_add=True)

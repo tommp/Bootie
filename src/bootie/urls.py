@@ -34,7 +34,6 @@ urlpatterns = [
     url(r'^logout/$', 'django.contrib.auth.views.logout',
         {'next_page': '/'}, name='bootie_logout'),
     url(r'^captcha/', include('captcha.urls')),
-    url(r'^english/', TemplateView.as_view(template_name="english_info.html")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
