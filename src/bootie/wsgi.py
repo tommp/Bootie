@@ -9,9 +9,6 @@ https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/
 
 import os, sys
 
-# add the virtualenv site-packages path to the sys.path
-sys.path.append('/home/tommp/Bootie/BOOTIE/Lib/site-packages')
-
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bootie.prod_settings")
