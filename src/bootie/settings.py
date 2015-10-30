@@ -38,7 +38,6 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'www.ntnuipadling.no',
     'ntnuipadling.no',
-    '81.191.152.193',
 ]
 
 

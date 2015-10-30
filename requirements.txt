@@ -7,3 +7,4 @@ django-imagekit==3.2.6
 django-simple-captcha==0.4.6
 easy-thumbnails==2.1
 uwsgi==2.0.11.2
+pytz==2015.7
