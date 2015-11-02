@@ -4,7 +4,9 @@
 *{font-family: 'Roboto', sans-serif;}
 
 .dropdown-menu-options {
-	display: block;
+	margin-top: @header-height;
+	display: none;
+	overflow: visible!important;
 	text-align: left;
 	background-color: @primary!important;
 	position: fixed!important;
@@ -68,12 +70,6 @@
 	  display:block;
 	  border-radius:0;
 	}
-}
-
-.side-panel {
-	margin-top: @header-height;
-	position: relative!important;
-	z-index: 100;
 }
 
 .menu-button {

@@ -84,8 +84,7 @@
             {% endif %}
             </div>
             
-            <div class="side-panel">
-                <ul class="dropdown-menu-options" id="menu-options">
+                <ul class="dropdown-menu-options">
                     <li><a href="/events/1/">Eventer</a></li>
                     <li><a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">Forum</a></li>
                     <li><a href="/info/">Informasjonsarkiv</a></li>
@@ -95,7 +94,6 @@
                     <li><a href="/weather/">Værmeldinger</a></li>
 
                 </ul>
-            </div>
         </div>
         {% endblock %}
 
@@ -200,7 +198,7 @@
     <script type="text/javascript" src="{% static 'js/less.min.js' %}"></script>
     <script type="text/javascript">
     $("#main-menu").click(function(){
-            $("#menu-options").toggle();
+            $(".dropdown-menu-options").toggle();
         });
     </script>
     <script type="text/javascript">
