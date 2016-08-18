@@ -95,6 +95,9 @@ class Event(models.Model):
     def __unicode__(self):
         return self.name + ' (' + str(self.start_date.day) + '.' + str(self.start_date.month) + '.' + str(self.start_date.year) + ')'
 
+    def show_attendees(self):
+        return self.show_attendees
+
     def get_list_image(self):
         return self.image.image
     get_list_image.short_description = "frontpage image"

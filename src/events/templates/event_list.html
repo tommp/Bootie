@@ -88,9 +88,11 @@
 											<p class="text-secondary-dark"> Click the event for more information! </p>
 										{% endif %}
 									{% endif %}
-									<form action="{{event.get_attendees_url}}">
-										<button type="submit" class="btn btn-success btn-margin-top">Attendees</button>
-									</form>
+									{% if event.show_attendees %}
+										<form action="{{event.get_attendees_url}}">
+											<button type="submit" class="btn btn-success btn-margin-top">Attendees</button>
+										</form>
+									{% endif %}
 									<form action="{{event.get_absolute_url}}">
 										<button type="submit" class="btn btn-success btn-margin-top" style="margin-bottom: 10px;">Details</button>
 									</form>
