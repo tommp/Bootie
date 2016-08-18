@@ -43,7 +43,11 @@
 							</div>
 							<div class="col-md-3 text-secondary-dark">
 								<div class="row textfield-small" style="padding-left: 5px;">
-									Free spots: <b>{{event.get_number_of_free_spots}} </b>
+									{% if event.get_max_number_of_free_spots %}
+										Free spots: <b>{{event.get_number_of_free_spots}} </b>
+									{% else %}
+										This event is a special snowflake, read the event article for registration details!
+									{% endif %}
 								</div>
 								<div class="row textfield-small" style="padding-left: 5px;">
 									{% if event.cost != 0 %} 
