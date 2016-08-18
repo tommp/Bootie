@@ -64,20 +64,24 @@
 											<p class="text-secondary-dark"> It's too late too unregister for this event! </p>
 										{% endif %}
 									{% else %}
-										{% if event.get_number_of_free_spots %}
-											{% if event.check_if_registration_started %}
-												{% if event.check_if_registration_not_closed %}
-													<form action="{{event.get_registration_url}}">
-														<button type="submit" class="btn btn-success btn-margin-top">Register</button>
-													</form>
+										{% if event.get_max_number_of_free_spots %}
+											{% if event.get_number_of_free_spots %}
+												{% if event.check_if_registration_started %}
+													{% if event.check_if_registration_not_closed %}
+														<form action="{{event.get_registration_url}}">
+															<button type="submit" class="btn btn-success btn-margin-top">Register</button>
+														</form>
+													{% else %}
+														<p class="text-secondary-dark"> Registration is closed! </p>
+													{% endif %}
 												{% else %}
-													<p class="text-secondary-dark"> Registration is closed! </p>
+													<p class="text-secondary-dark"> Registration is not open yet! </p>
 												{% endif %}
 											{% else %}
-												<p class="text-secondary-dark"> Registration is not open yet! </p>
+												<p class="text-secondary-dark"> This event is full! </p>
 											{% endif %}
 										{% else %}
-											<p class="text-secondary-dark"> This event is full! </p>
+											<p class="text-secondary-dark"> Click the event for more information! </p>
 										{% endif %}
 									{% endif %}
 									<form action="{{event.get_attendees_url}}">
