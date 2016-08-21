@@ -42,11 +42,10 @@
     {% endblock %}
 
     <div class="container-fluid no-overflow">
-
         {% block header %}
         <div class="row header visible-md visible-lg">
             <div class="col-md-1 dd-menu">
-                <div class="menu-button" id="main-menu">&#9776;Meny</div>
+                <div class="menu-button" id="main-menu">Meny</div>
             </div>
 
             <div class="col-md-1 admin-tag">
@@ -65,8 +64,7 @@
 
             <div class="col-md-5 login">
             {% if form.errors %}
-            {% endif %}
-            {% if user.is_authenticated %}
+            {% elif user.is_authenticated %}
                 <a class="profile-link" href="/users/{{user.id}}/profile/">Profil! </a>
                 <a class="logout-link" href="{% url "bootie_logout" %}">Logg ut</a>
             {% else %}
@@ -84,7 +82,86 @@
             {% endif %}
             </div>
         </div>
+
+        <!-- MOBILE -->
+        <div class="row header visible-xs visible-sm">
+            <div class="col-xs-2 col-sm-2 dd-menu">
+                <div class="menu-button" id="mobile-main-menu">Meny</div>
+            </div>
+
+            <div class="col-xs-1 col-sm-1 admin-tag">
+                {% if user.is_staff %}
+                    <a href="/admin">
+                        Admin
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="col-xs-2 col-sm-2 col-xs-offset-2 col-sm-offset-2">
+                <a href="/">
+                    <img class="main-top-logo" src="{% static 'img/main_icon.png' %}" alt="Logo">
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+                <div class="col-xs-5 col-sm-5 login">
+                    <a class="profile-link" href="/users/{{user.id}}/profile/">Profil! </a>
+                    <a class="logout-link" href="{% url "bootie_logout" %}">Logg ut</a>
+                </div>
+            {% else %}
+                <div class="col-xs-5 col-sm-5 ntnui-link">
+                    <a href="http://ntnui.no" target="_blank">
+                        <img class="ntnui-logo-mobile-header" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        {% if user.is_authenticated %}
+            <div class="row mobile-extra-header visible-xs visible-sm">
+                <div class="col-xs-6 col-sm-6 welcome-mobile">
+                    {% if user.first_name %}
+                        Velkommen tilbake <a href="/users/{{user.id}}/profile/">{{ user.first_name }}!</a>
+                    {% else %}
+                        Velkommen tilbake <a href="/users/{{user.id}}/profile/">{{ user.username }}!</a>
+                    {% endif %}
+                </div>
+                <div class="col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-2 ntnui-link">
+                    <a href="http://ntnui.no" target="_blank">
+                        <img class="ntnui-logo-mobile-header" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="row mobile-extra-header visible-xs visible-sm">
+                    {% if form.errors %}
+                    {% else %}
+                        <form class="navbar-form navbar-right" role="form" action="{% url "bootie_login" %}"
+                        method="post" accept-charset="utf-8">
+                            <div class="row">
+                                <div class="form-group col-xs-4 col-sm-4 col-xs-offset-1 col-sm-offset-1 purgpadding">
+                                    <input type="text" placeholder="Brukernavn" class="form-control" name="username">
+                                </div>
+                                <div class="form-group col-xs-4 col-sm-4 purgpadding">
+                                    <input type="password" placeholder="Passord" class="form-control" name="password">
+                                </div>
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success col-xs-2 col-sm-2">Logg inn</button>
+                            </div>
+                        </form>
+                    {% endif %}
+            </div>
+        {% endif %}
+        
         <ul class="dropdown-menu-options">
+            <li><a href="/events/1/">Eventer</a></li>
+            <li><a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">Forum</a></li>
+            <li><a href="/info/">Informasjonsarkiv</a></li>
+            <li><a href="/info/english/">Information in English!</a></li>
+            <li><a href="/article/news/1/">Nyheter</a></li>
+            <li><a href="/users/board/">Styret</a></li>
+            <li><a href="/weather/">Værmeldinger</a></li>
+        </ul>
+
+        <ul class="mobile-dropdown-menu-options">
             <li><a href="/events/1/">Eventer</a></li>
             <li><a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">Forum</a></li>
             <li><a href="/info/">Informasjonsarkiv</a></li>
@@ -101,81 +178,23 @@
         {% endblock %}
 
         {% block footer %}
-        <div class="row footer">
-            <div class="row visible-xs visible-sm">
-                <div class="col-sm-2">
-                    <a href="/">Hjem</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="/events/1/">Eventer</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="/info/">Informasjonsarkiv</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="/article/news/1/">Nyheter</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="/users/board/">Styret</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="/weather/">Værmeldinger</a>
-                </div>
-            </div>
-            <div class="row visible-xs visible-sm">
-                <div class="col-sm-1 admin-tag">
-                    {% if user.is_staff %}
-                        <a href="/admin">
-                            Admin
-                        </a>
-                    {% endif %}
-                </div>
-                <div class="col-sm-9 login">
-                {% if form.errors %}
-                {% endif %}
-                {% if user.is_authenticated %}
-                    <a class="profile-link" href="/users/{{user.id}}/profile/">Profil! </a>
-                    <a class="logout-link" href="{% url "bootie_logout" %}">Logg ut</a>
-                {% else %}
-                    <form class="navbar-form navbar-right" role="form" action="{% url "bootie_login" %}"
-                    method="post" accept-charset="utf-8">
-                        <div class="form-group">
-                            <input type="text" placeholder="Brukernavn" class="form-control" name="username">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Passord" class="form-control" name="password">
-                        </div>
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-success">Logg inn</button>
-                    </form>
-                {% endif %}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-2 col-md-offset-5 ntnui-link visible-xs visible-sm">
-                    <a href="http://ntnui.no" target="_blank">
-                        <img class="ntnui-logo img-responsive" href="/" src="{% static 'img/FPntnuipadling.png' %}" alt="Logo">
-                    </a>
-                </div>
-            </div>
-
+        <div class="row footer visible-md visible-lg">
             <div class="row">
                 <div class="col-md-2 col-md-offset-5 ntnui-link visible-md visible-lg">
                     <a href="http://ntnui.no" target="_blank">
-                        <img class="ntnui-logo img-responsive" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
+                        <img class="ntnui-logo" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
                     </a>
                 </div>
             </div>
             <div class="row visible-md visible-lg">
                 <div class="col-md-2 col-md-offset-5 ntnui-link">
                     <a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">
-                        <img class="facefoot-logo img-responsive"  href="/" src="{% static 'img/FacebookLogo.png' %}" alt="FBLogo">
+                        <img class="facefoot-logo"  href="/" src="{% static 'img/FacebookLogo.png' %}" alt="FBLogo">
                     </a>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-md-offset-4 ntnui-link">
+                <div class="col-md-4 col-md-offset-4 ntnui-logo">
                     <p class="text-secondary-dark footer-paragraph visible-md visible-lg">
                         Laget av Tom M. Pedersen for NTNUI-Padling.
                     </p>
@@ -198,6 +217,11 @@
     <script type="text/javascript">
     $("#main-menu").click(function(){
             $(".dropdown-menu-options").toggle();
+        });
+    </script>
+    <script type="text/javascript">
+    $("#mobile-main-menu").click(function(){
+            $(".mobile-dropdown-menu-options").toggle();
         });
     </script>
     <script type="text/javascript">

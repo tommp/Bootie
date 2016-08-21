@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-	<div class="row middle-row visible-lg">
+	<div class="row middle-row visible-md visible-lg">
 		<div class="col-md-5">
 			<div class="row">
 				{% if user.is_authenticated %}
@@ -141,6 +141,79 @@
         	</div>
         </div>
 
+    </div>
+
+    <!-- MOBILE -->
+    <div class="row middle-row-mobile visible-xs visible-sm">
+    	<div class="row">
+			<div class="col-md-10 mobile-index-frame">
+    			<a href="{{latest.get_absolute_url}}">
+        			<div class="row">
+        				{% if latest.image %}
+        				<div class="col-md-12 mobile-article-image">
+	        				<img class="img-responsive" href="/" src="{{latest.image.image.url}}" alt="">
+	        			</div>
+	        			{% endif %}
+	        		</div>
+	        		<div class="row">
+	        			<div class="col-md-12">
+	        				<div class="row textfield headline-text" style="padding-left: 5px;">
+	        					<h2>{{latest.headline|linebreaks}}</h2>
+	        				</div>
+	        			</div>
+	        		</div>
+	        		<div class="row">
+	        			<div class="col-md-12">
+	        				<div class="row textfield-small" style="padding-left: 5px;">
+	        					{{latest.lead|linebreaks}}
+	        				</div>
+	        			</div>
+        			</div>
+        		</a>
+        	</div>
+		</div>
+    	<div class="row">
+			<div class="col-md-10 mobile-index-frame">
+    			<a href="{{news_left.get_absolute_url}}">
+        			<div class="row">
+        				{% if news_left.image %}
+        				<div class="col-md-5 mobile-article-image">
+	        				{% thumbnail '0x150' news_left.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
+	        			</div>
+	        			{% endif %}
+	        			<div class="col-md-7">
+	        				<div class="row textfield headline-text" style="padding-left: 5px;">
+	        					<h4>{{news_left.headline|linebreaks}}</h4>
+	        				</div>
+	        				<div class="row textfield-small" style="padding-left: 5px;">
+	        					{{news_left.lead|linebreaks}}
+	        				</div>
+	        			</div>
+        			</div>
+        		</a>
+    		</div>
+    	</div>
+		<div class="row">
+			<div class="col-md-10 mobile-index-frame">
+    			<a href="{{news_right.get_absolute_url}}">
+        			<div class="row">
+        				{% if news_right.image %}
+        				<div class="col-md-5 mobile-article-image">
+	        				{% thumbnail '0x150' news_right.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
+	        			</div>
+	        			{% endif %}
+	        			<div class="col-md-7">
+	        				<div class="row textfield headline-text" style="padding-left: 5px;">
+	        					<h4>{{news_right.headline|linebreaks}}</h4>
+	        				</div>
+	        				<div class="row textfield-small" style="padding-left: 5px;">
+	        					{{news_right.lead|linebreaks}}
+	        				</div>
+	        			</div>
+        			</div>
+        		</a>
+        	</div>
+		</div>
     </div>
 {% endblock content %}
 

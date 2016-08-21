@@ -22,6 +22,25 @@
 	}
 }
 
+.mobile-dropdown-menu-options {
+	margin-top: @header-height;
+	display: none;
+	overflow: visible!important;
+	text-align: left;
+	background-color: @primary!important;
+	position: fixed!important;
+	z-index: 100;
+	left: 0%;
+	width: auto;
+	height: 100%;
+	padding-right: 30px;
+	padding-top: 30px;
+	box-shadow: 0 1px 7px;
+	a:hover{
+		color: #000000!important;
+	}
+}
+
 .row {
 	overflow: hidden;
 }
@@ -39,12 +58,30 @@
 	width: 100%;
 }
 
+.mobile-extra-header{
+	background-color: @background-pleasant-neutral;
+	margin-top: @header-height;
+	height: @header-height;
+	z-index: 10;
+	position: fixed!important;
+	width: 100%;
+}
+
 .footer{
 	background-color: @primary-hue-light;
 	height: @footer-height;
 	box-shadow: 0 1px 7px;
 	z-index: 9001;
 	position: absolute;
+	width: 100%;
+}
+
+.mobile-footer {
+	background-color: @primary-hue-light;
+	height: @footer-height;
+	box-shadow: 0 1px 7px;
+	z-index: 9001;
+	position: relative;
 	width: 100%;
 }
 
@@ -79,6 +116,14 @@
 	font-size: 2em;
 	cursor: pointer; 
 	cursor: hand;
+}
+
+.profile-link {
+	margin-top: 10px!important;
+}
+
+.logout-link {
+	margin-top: 10px!important;
 }
 
 .menu-button:hover {
@@ -118,12 +163,38 @@ li {
 	float: left;
 }
 
+.dd-menu-mobile{
+	margin-top: 2px;
+	float: left;
+}
+
 .ntnui-logo{
 	margin-top: 40px!important;
 	height: calc(@header-height - 20px);
 	width: auto;
 	display : block;
     margin : auto;
+}
+
+.ntnui-logo-mobile-header{
+	margin-top: 10px!important;
+	height: calc(@header-height - 20px);
+	width: auto;
+	display : block;
+    margin : auto;
+    float: right;
+}
+
+.centered-text{
+    .text-light;
+    text-align: center!important;
+}
+
+.welcome-mobile{
+	.text-secondary-dark;
+    text-align: left!important;
+    font-size: 1.5em;
+    padding-top: 20px;
 }
 
 .facefoot-logo{
@@ -218,4 +289,8 @@ li {
 .profile-link:hover{
 	color: #000000!important;
 	
+}
+
+.purgpadding {
+	padding: 0 !important;
 }

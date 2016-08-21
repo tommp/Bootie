@@ -88,7 +88,7 @@
 											<p class="text-secondary-dark"> Click the event for more information! </p>
 										{% endif %}
 									{% endif %}
-									{% if event.show_attendees %}
+									{% if event.should_show_attendees %}
 										<form action="{{event.get_attendees_url}}">
 											<button type="submit" class="btn btn-success btn-margin-top">Attendees</button>
 										</form>

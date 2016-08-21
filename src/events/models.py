@@ -79,14 +79,14 @@ class Event(models.Model):
     category = models.ManyToManyField('Category')
 
     image = models.ForeignKey('galleries.Image', null=True, blank=True)
-    image_description = models.TextField( null=True, blank=True )
+    image_description = models.TextField(null=True, blank=True)
 
     event_article = models.ForeignKey('posts.Article')
 
-    max_attendees = models.IntegerField(default = 0, help_text="Leave at 0 to disable registration")
-    number_of_attendees = models.IntegerField(default = 0)
+    max_attendees = models.IntegerField(default=0, help_text="Leave at 0 to disable registration")
+    number_of_attendees = models.IntegerField(default=0)
 
-    cost = models.IntegerField(default = 0)
+    cost = models.IntegerField(default=0)
 
     show_attendees = models.BooleanField('Show attendees', default=True)
 
@@ -95,7 +95,7 @@ class Event(models.Model):
     def __unicode__(self):
         return self.name + ' (' + str(self.start_date.day) + '.' + str(self.start_date.month) + '.' + str(self.start_date.year) + ')'
 
-    def show_attendees(self):
+    def should_show_attendees(self):
         return self.show_attendees
 
     def get_list_image(self):
@@ -103,7 +103,7 @@ class Event(models.Model):
     get_list_image.short_description = "frontpage image"
 
     def get_share_url(self):
-        return 'http://%s%s' % ( Site.objects.get_current(), self.get_absolute_url())
+        return 'http://%s%s' % (Site.objects.get_current(), self.get_absolute_url())
     get_share_url.short_description = "share url"
 
     def check_if_cancellation_availible(self):
