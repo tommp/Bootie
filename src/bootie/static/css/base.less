@@ -118,18 +118,45 @@
 	cursor: hand;
 }
 
+.menu-button-mobile{
+	margin-top: 15px;
+	font-weight: bold;
+	text-align: left;
+	color: #FFF!important;
+	font-size: 1.5em;
+	cursor: pointer; 
+	cursor: hand;
+}
+
 .profile-link {
 	margin-top: 10px!important;
+}
+
+.profile-link-mobile {
+	margin-top: 15px;
+	a{
+		.menu-button-mobile;
+	}
 }
 
 .logout-link {
 	margin-top: 10px!important;
 }
 
+.logout-link-mobile {
+	margin-top: 15px;
+	a{
+		.menu-button-mobile;
+	}
+}
+
 .menu-button:hover {
 	color: #000000!important;
 }
 
+.frontpagemenu{
+	padding-top: 40px!important;
+}
 
 li {
 	list-style-type: none;
@@ -193,13 +220,13 @@ li {
 .welcome-mobile{
 	.text-secondary-dark;
     text-align: left!important;
-    font-size: 1.5em;
-    padding-top: 20px;
+    font-size: 1.2em;
+    padding-top: 10px;
 }
 
 .facefoot-logo{
 	margin-top: 40px!important;
-	height: calc(@header-height - 20px);
+	height: @header-height;
 	width: 80%;
 	display : block;
     margin : auto;
@@ -274,6 +301,13 @@ li {
 
 	a:link{
 		text-decoration: none;
+	}
+}
+
+.admin-tag-mobile{
+	margin-top: 15px;
+	a{
+		.menu-button-mobile;
 	}
 }
 

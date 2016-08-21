@@ -85,11 +85,11 @@
 
         <!-- MOBILE -->
         <div class="row header visible-xs visible-sm">
-            <div class="col-xs-2 col-sm-2 dd-menu">
-                <div class="menu-button" id="mobile-main-menu">Meny</div>
+            <div class="col-xs-2 col-sm-2 menu-button-mobile">
+                <div id="mobile-main-menu">Meny</div>
             </div>
 
-            <div class="col-xs-1 col-sm-1 admin-tag">
+            <div class="col-xs-3 col-sm-3 admin-tag-mobile">
                 {% if user.is_staff %}
                     <a href="/admin">
                         Admin
@@ -97,18 +97,19 @@
                 {% endif %}
             </div>
 
-            <div class="col-xs-2 col-sm-2 col-xs-offset-2 col-sm-offset-2">
-                <a href="/">
-                    <img class="main-top-logo" src="{% static 'img/main_icon.png' %}" alt="Logo">
-                </a>
-            </div>
             {% if user.is_authenticated %}
-                <div class="col-xs-5 col-sm-5 login">
-                    <a class="profile-link" href="/users/{{user.id}}/profile/">Profil! </a>
-                    <a class="logout-link" href="{% url "bootie_logout" %}">Logg ut</a>
+                <div class="col-xs-3 col-sm-3 profile-link-mobile">
+                    <a href="/users/{{user.id}}/profile/">
+                        Profil!
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 logout-link-mobile">
+                    <a href="{% url "bootie_logout" %}">
+                        Logg ut
+                    </a>
                 </div>
             {% else %}
-                <div class="col-xs-5 col-sm-5 ntnui-link">
+                <div class="col-xs-5 col-sm-5 col-xs-offset-2 col-sm-offset-2 ntnui-link">
                     <a href="http://ntnui.no" target="_blank">
                         <img class="ntnui-logo-mobile-header" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
                     </a>
@@ -117,14 +118,14 @@
         </div>
         {% if user.is_authenticated %}
             <div class="row mobile-extra-header visible-xs visible-sm">
-                <div class="col-xs-6 col-sm-6 welcome-mobile">
+                <div class="col-xs-7 col-sm-7 welcome-mobile">
                     {% if user.first_name %}
                         Velkommen tilbake <a href="/users/{{user.id}}/profile/">{{ user.first_name }}!</a>
                     {% else %}
                         Velkommen tilbake <a href="/users/{{user.id}}/profile/">{{ user.username }}!</a>
                     {% endif %}
                 </div>
-                <div class="col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-2 ntnui-link">
+                <div class="col-xs-4 col-xs-offset-1 col-sm-4 col-sm-offset-1 ntnui-link">
                     <a href="http://ntnui.no" target="_blank">
                         <img class="ntnui-logo-mobile-header" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
                     </a>
@@ -151,7 +152,8 @@
             </div>
         {% endif %}
         
-        <ul class="dropdown-menu-options">
+        <ul class="dropdown-menu-options hidden-xs hidden-sm">
+            <li><a class="frontpagemenu" href="/">Tilbake til forsiden</a></li>
             <li><a href="/events/1/">Eventer</a></li>
             <li><a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">Forum</a></li>
             <li><a href="/info/">Informasjonsarkiv</a></li>
@@ -159,9 +161,15 @@
             <li><a href="/article/news/1/">Nyheter</a></li>
             <li><a href="/users/board/">Styret</a></li>
             <li><a href="/weather/">Værmeldinger</a></li>
+
+            {% if user.is_authenticated %}
+            {% else %}
+            <li><a href="/users/register/">Opprett brukerkonto (Register account)</a></li>
+            {% endif %}
         </ul>
 
-        <ul class="mobile-dropdown-menu-options">
+        <ul class="mobile-dropdown-menu-options hidden-md hidden-lg">
+            <li><a class="frontpagemenu" href="/">Tilbake til forsiden</a></li>
             <li><a href="/events/1/">Eventer</a></li>
             <li><a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">Forum</a></li>
             <li><a href="/info/">Informasjonsarkiv</a></li>
@@ -169,6 +177,11 @@
             <li><a href="/article/news/1/">Nyheter</a></li>
             <li><a href="/users/board/">Styret</a></li>
             <li><a href="/weather/">Værmeldinger</a></li>
+            
+            {% if user.is_authenticated %}
+            {% else %}
+            <li><a href="/users/register/">Opprett brukerkonto (Register account)</a></li>
+            {% endif %}
 
         </ul>
         {% endblock %}
@@ -194,7 +207,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-md-offset-4 ntnui-logo">
+                <div class="col-md-4 col-md-offset-4">
                     <p class="text-secondary-dark footer-paragraph visible-md visible-lg">
                         Laget av Tom M. Pedersen for NTNUI-Padling.
                     </p>
