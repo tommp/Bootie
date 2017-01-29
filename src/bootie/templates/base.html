@@ -2,6 +2,7 @@
 <html lang="en-US">
 
 {% load staticfiles %}
+{% load imagekit %}
 
 <head>
     <title>NTNUI Padling</title>
@@ -58,14 +59,16 @@
 
             <div class="col-md-2 col-md-offset-3">
                 <a href="/">
-                    <img class="main-top-logo" src="{% static 'img/main_icon.png' %}" alt="Logo">
+                    {% if frontpageData %}
+                        {% thumbnail '0x60' frontpageData.top_logo.image -- alt="Logo" href="/" class="main-top-logo" %}
+                    {% endif %}
                 </a>
             </div>
 
             <div class="col-md-5 login">
             {% if form.errors %}
             {% elif user.is_authenticated %}
-                <a class="profile-link" href="/users/{{user.id}}/profile/">Profil! </a>
+                <a class="profile-link" href="/users/{{user.id}}/profile/">Profil </a>
                 <a class="logout-link" href="{% url "bootie_logout" %}">Logg ut</a>
             {% else %}
                 <form class="navbar-form navbar-right" role="form" action="{% url "bootie_login" %}"

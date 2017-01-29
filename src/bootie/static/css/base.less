@@ -8,7 +8,7 @@
 	display: none;
 	overflow: visible!important;
 	text-align: left;
-	background-color: @primary!important;
+	background-color: @primary-hue-dark!important;
 	position: fixed!important;
 	z-index: 100;
 	left: 0%;
@@ -27,7 +27,7 @@
 	display: none;
 	overflow: visible!important;
 	text-align: left;
-	background-color: @primary!important;
+	background-color: @primary-hue-dark!important;
 	position: fixed!important;
 	z-index: 100;
 	left: 0%;
@@ -50,7 +50,7 @@
 }
 
 .header{
-	background-color: @primary;
+	background-color: @primary-hue-dark;
 	height: @header-height;
 	box-shadow: 0 1px 7px;
 	z-index: 9003;
@@ -69,7 +69,6 @@
 
 .footer{
 	background-color: @primary-hue-light;
-	height: @footer-height;
 	box-shadow: 0 1px 7px;
 	z-index: 9001;
 	position: absolute;
@@ -78,7 +77,6 @@
 
 .mobile-footer {
 	background-color: @primary-hue-light;
-	height: @footer-height;
 	box-shadow: 0 1px 7px;
 	z-index: 9001;
 	position: relative;
@@ -140,6 +138,8 @@
 }
 
 .logout-link {
+	.text-secondary-light;
+	margin-left: 35px;
 	margin-top: 10px!important;
 }
 
@@ -227,7 +227,7 @@ li {
 .facefoot-logo{
 	margin-top: 40px!important;
 	height: @header-height;
-	width: 80%;
+	width: auto;
 	display : block;
     margin : auto;
 }
@@ -309,11 +309,6 @@ li {
 	a{
 		.menu-button-mobile;
 	}
-}
-
-.logout-link{
-	.text-secondary-light;
-	font-size: 1.2em!important;
 }
 
 .logout-link:hover{

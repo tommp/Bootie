@@ -3,227 +3,108 @@
 {% load imagekit %}
 
 {% block css %}
-	<link type="text/less" rel="stylesheet" href="{% static 'css/index.less' %}"/>
-	<link type="text/less" rel="stylesheet" href="{% static 'css/calendar.less' %}"/>
+    <link type="text/less" rel="stylesheet" href="{% static 'css/index.less' %}"/>
+    <link type="text/less" rel="stylesheet" href="{% static 'css/calendar.less' %}"/>
 {% endblock %}
 
 {% block content %}
-	<div class="row middle-row visible-md visible-lg">
-		<div class="col-md-5">
-			<div class="row">
-				{% if user.is_authenticated %}
-					<div class="col-md-10 calendar-container">
-						<div class="row">
-							<div class="col-md-12 calendar remove-only-padding" id="calendar-div">
-								{{ calendar }}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12 welcome-message">
-								{% if user.first_name %}
-				                    Velkommen tilbake <a href="/users/{{user.id}}/profile/">{{ user.first_name }}!</a>
-				                {% else %}
-				                    Velkommen tilbake <a href="/users/{{user.id}}/profile/">{{ user.username }}!</a>
-				                {% endif %}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12 welcome-info">
-								Sjekk ut kalenderen for informasjon om fremtidige eventer!
-							</div>
-						</div>
-					</div>
-				{% else %}
-		        	<img class="main-logo img-responsive" href="/" src="{% static 'img/FPntnuipadlingSmall.png' %}" alt="Logo">
-		    	{% endif %}
-		    </div>
-		    {% if user.is_authenticated %}
-		    {% else %}
-		    <div class="row">
-		        <div class="col-md-10 col-md-offset-1 text-dark join-text">
-		        	<h1>Lyst til å bli med i gruppa? Registrer deg <a href="/users/register/" class="main-links">her!</a></h1>
-		        </div>
-		    </div>
-		    <div class="row">
-		        <div class="col-md-10 col-md-offset-1 text-dark join-text">
-		        	<h1>Følg oss på <a href="https://www.facebook.com/groups/ntnuipadling/" class="main-links" target="_blank">Facebook!</a></h1>
-		        </div>
-		    </div>
-		    {% endif %}
-	    </div>
-
-        <div class=" col-md-7 frames">
-        	<div class="row text-secondary-dark instagram-tag">
-        		<div class="col-md-12">
-        			Siste fra <a href="/instagram/">#ntnuipadling</a> på instagram!
-        		</div>
-        	</div>
-        	<div class="row top-row-pad">
-        		<div class="col-md-12">
-        			<div class="col-md-12 instagram-frame">
-							<!-- SnapWidget -->
-						<script src="http://snapwidget.com/js/snapwidget.js"></script>
-						<iframe src="http://snapwidget.com/in/?h=bnRudWlwYWRsaW5nfGlufDYwfDV8MXx8eWVzfDN8bm9uZXxvblN0YXJ0fHllc3x5ZXM=&ve=250815" title="Instagram Widget" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%;"></iframe>
-					</div>
-				</div>
-        	</div>
-        	<div class="row text-secondary-dark news-tag">
-        		<div class="col-md-12">
-        			Siste nyheter!
-        		</div>
-        	</div>
-        	<div class="row top-row-pad">
-        		<div class="col-md-11">
-	        		<div class="col-md-12 index-frame">
-		        		<a href="{{latest.get_absolute_url}}">
-		        			<div class="row">
-		        				{% if latest.image %}
-			        			<div class="col-md-4 remove-padding">
-			        				{% thumbnail '0x200' latest.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
-			        			</div>
-			        			{% endif %}
-			        			<div class="col-md-8">
-			        				<div class="row textfield headline-text" style="padding-left: 10px;">
-			        					<h1>{{latest.headline|linebreaks}}</h1>
-			        				</div>
-			        				<div class="row textfield" style="padding-left: 10px;">
-			        					{{latest.lead|linebreaks}}
-			        				</div>
-			        			</div>
-		        			</div>
-	        			</a>
-	        		</div>
-	        	</div>
-        	</div>
-        	<div class="row ">
-        		<div class="col-md-6">
-        			<div class="col-md-12 index-frame">
-	        			<a href="{{news_left.get_absolute_url}}">
-		        			<div class="row">
-		        				{% if news_left.image %}
-		        				<div class="col-md-5 remove-padding">
-			        				{% thumbnail '0x150' news_left.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
-			        			</div>
-			        			{% endif %}
-			        			<div class="col-md-7">
-			        				<div class="row textfield headline-text" style="padding-left: 5px;">
-			        					<h4>{{news_left.headline|linebreaks}}</h4>
-			        				</div>
-			        				<div class="row textfield-small" style="padding-left: 5px;">
-			        					{{news_left.lead|linebreaks}}
-			        				</div>
-			        			</div>
-		        			</div>
-		        		</a>
-		        	</div>
-        		</div>
-        		<div class="col-md-5">
-        			<div class="col-md-12 index-frame">
-	        			<a href="{{news_right.get_absolute_url}}">
-		        			<div class="row">
-		        				{% if news_right.image %}
-		        				<div class="col-md-5 remove-padding">
-			        				{% thumbnail '0x150' news_right.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
-			        			</div>
-			        			{% endif %}
-			        			<div class="col-md-7">
-			        				<div class="row textfield headline-text" style="padding-left: 5px;">
-			        					<h4>{{news_right.headline|linebreaks}}</h4>
-			        				</div>
-			        				<div class="row textfield-small" style="padding-left: 5px;">
-			        					{{news_right.lead|linebreaks}}
-			        				</div>
-			        			</div>
-		        			</div>
-		        		</a>
-		        	</div>
-        		</div>
-        	</div>
+    <div class="row middle-row">
+        <div class="col-sm-6 col-md-6 col-lg-6 col-md-offset-2 main-col">
+            <div class="row instagram-tag">
+                <div class="col-md-12 text-secondary-dark">
+                    Siste fra <a href="/instagram/">#ntnuipadling</a> på instagram
+                </div>
+                <div class="col-md-12">
+                     <div class="col-md-12 instagram-frame">
+                            <!-- SnapWidget -->
+                        <script src="http://snapwidget.com/js/snapwidget.js"></script>
+                        <iframe src="http://snapwidget.com/in/?h=bnRudWlwYWRsaW5nfGlufDYwfDV8MXx8eWVzfDN8bm9uZXxvblN0YXJ0fHllc3x5ZXM=&ve=250815" title="Instagram Widget" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="row news-container">
+                <div class="col-md-12 text-secondary-dark news-tag">
+                    Siste nyheter
+                </div>
+                {% for article in articles %}
+                 <div class="col-md-12">
+                    <a href="{{article.get_absolute_url}}">
+                        <div class="row news-frame">
+                            {% if article.image %}
+                            <div class="col-md-4 remove-padding">
+                                {% thumbnail '0x200' article.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
+                            </div>
+                            {% endif %}
+                            <div class="col-md-8">
+                                <div class="row textfield headline-text" style="padding-left: 10px;">
+                                    <h1>{{article.headline|linebreaks}}</h1>
+                                </div>
+                                <div class="row textfield text-secondary-dark" style="padding-left: 10px;">
+                                    {{article.lead|linebreaks}}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
+        <div class="col-sm-2 col-md-2 col-lg-2 side-column visible-md visible-lg">
+            <div class="row">
+                {% if user.is_authenticated %}
+                {% else %}
+                        <div class="col-sm-12 col-md-12 col-lg-12 welcome-message">
+                            Lyst til å bli med i padlegruppa?
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 welcome-button"><a href="/users/register/" class="main-links"><button type="button" class="btn btn-success">Registrer deg her</button></a></div>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <p class="ads-tag">Sponsorer</p>
+                </div>
+            </div>
 
-    </div>
+            {% for ad in ads %}
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <a href="{{ad.url}}">
+                            {% thumbnail '0x200' ad.image.image -- alt="" href="/" class="img-responsive ad-image-tag" %}
+                        </a>
+                    </div> 
+                </div>
+            {% endfor %}
 
-    <!-- MOBILE -->
-    <div class="row middle-row-mobile visible-xs visible-sm">
-    	<div class="row">
-			<div class="col-md-10 mobile-index-frame">
-    			<a href="{{latest.get_absolute_url}}">
-        			<div class="row">
-        				{% if latest.image %}
-        				<div class="col-md-12 mobile-article-image">
-	        				<img class="img-responsive" href="/" src="{{latest.image.image.url}}" alt="">
-	        			</div>
-	        			{% endif %}
-	        		</div>
-	        		<div class="row">
-	        			<div class="col-md-12">
-	        				<div class="row textfield headline-text" style="padding-left: 5px;">
-	        					<h2>{{latest.headline|linebreaks}}</h2>
-	        				</div>
-	        			</div>
-	        		</div>
-	        		<div class="row">
-	        			<div class="col-md-12">
-	        				<div class="row textfield-small" style="padding-left: 5px;">
-	        					{{latest.lead|linebreaks}}
-	        				</div>
-	        			</div>
-        			</div>
-        		</a>
-        	</div>
-		</div>
-    	<div class="row">
-			<div class="col-md-10 mobile-index-frame">
-    			<a href="{{news_left.get_absolute_url}}">
-        			<div class="row">
-        				{% if news_left.image %}
-        				<div class="col-md-5 mobile-article-image">
-	        				{% thumbnail '0x150' news_left.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
-	        			</div>
-	        			{% endif %}
-	        			<div class="col-md-7">
-	        				<div class="row textfield headline-text" style="padding-left: 5px;">
-	        					<h4>{{news_left.headline|linebreaks}}</h4>
-	        				</div>
-	        				<div class="row textfield-small" style="padding-left: 5px;">
-	        					{{news_left.lead|linebreaks}}
-	        				</div>
-	        			</div>
-        			</div>
-        		</a>
-    		</div>
-    	</div>
-		<div class="row">
-			<div class="col-md-10 mobile-index-frame">
-    			<a href="{{news_right.get_absolute_url}}">
-        			<div class="row">
-        				{% if news_right.image %}
-        				<div class="col-md-5 mobile-article-image">
-	        				{% thumbnail '0x150' news_right.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
-	        			</div>
-	        			{% endif %}
-	        			<div class="col-md-7">
-	        				<div class="row textfield headline-text" style="padding-left: 5px;">
-	        					<h4>{{news_right.headline|linebreaks}}</h4>
-	        				</div>
-	        				<div class="row textfield-small" style="padding-left: 5px;">
-	        					{{news_right.lead|linebreaks}}
-	        				</div>
-	        			</div>
-        			</div>
-        		</a>
-        	</div>
-		</div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <a href="https://www.facebook.com/groups/ntnuipadling/" target="_blFBLogoank">
+                        {% if frontpageData %}
+                            {% if frontpageData.facebookImage %}
+                                {% thumbnail '0x100' frontpageData.facebookImage.image -- alt="" href="/" class="facebook-logo" %}
+                            {% else %}
+                                <div class="facebook-text text-secondary-dark">
+                                    Finn oss på facebook!
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="facebook-text text-secondary-dark">
+                                Finn oss på facebook!
+                            </div>
+                        {% endif %}
+                    </a>
+                </div> 
+            </div>
+        </div>
     </div>
 {% endblock content %}
 
 
 {% block js %}
 <script type="text/javascript">
-	$(document).ready(function() {
-		$( "#calendar-div" ).slideDown( "slow", function() {
-		// Animation complete.
-		});
-	});
+    $(document).ready(function() {
+        $( "#calendar-div" ).slideDown( "slow", function() {
+        // Animation complete.
+        });
+    });
 </script>
 {% endblock %}

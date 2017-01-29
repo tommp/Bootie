@@ -32,6 +32,7 @@ DEBUG = True
 ADMINS = (
     ('Tom Meland Pedersen', 'tompersen@gmail.com')
 )
+
 MANAGERS = ADMINS
 
 ALLOWED_HOSTS = [
@@ -62,6 +63,7 @@ INSTALLED_APPS = (
     'paddleusers',
     'events',
     'galleries',
+    'ads',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -88,6 +90,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'index.context_processors.base_context',
             ],
         },
     },

@@ -55,11 +55,12 @@ with open(SECRET_KEY_DIR) as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ADMINS = (
     ('Tom Meland Pedersen', 'tompersen@gmail.com')
 )
+
 MANAGERS = ADMINS
 
 ALLOWED_HOSTS = [

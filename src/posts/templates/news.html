@@ -1,102 +1,103 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load imagekit %}
 
 {% block css %}
-    <link type="text/less" rel="stylesheet" href="{% static 'css/article.less' %}"/>
+	<link type="text/less" rel="stylesheet" href="{% static 'css/article.less' %}"/>
 {% endblock %}
 
 {% block content %}
 	<div class="row main-container">
 		<div class=" col-md-8 col-md-offset-2 top-col">
-        	<div class="row text-secondary-dark news-tag">
-        		Nyheter
-        	</div>
-        	<div class="row">
-        		<div class="col-md-6 remove-padding">
-        			{% for article in rightCol %}
-        			<div class="row news-frame">
-        				<div class="col-md-12">
-		        			<a href="{{article.get_absolute_url}}">
-			        			<div class="row">
-			        				{% if article.image %}
-			        				<div class="col-md-12 remove-padding">
-				        				<img class="img-responsive" href="/" src="{{article.image.image.url}}" alt="">
-				        			</div>
-				        			{% endif %}
-				        		</div>
-				        		<div class="row">
-				        			<div class="col-md-12">
-				        				<div class="row textfield headline-text" style="padding-left: 5px;">
-				        					<h2>{{article.headline|linebreaks}}</h2>
-				        				</div>
-				        			</div>
-				        		</div>
-				        		<div class="row">
-				        			<div class="col-md-12">
-				        				<div class="row textfield-small" style="padding-left: 5px;">
-				        					{{article.lead|linebreaks}}
-				        				</div>
-				        			</div>
-			        			</div>
-			        		</a>
-			        	</div>
-		        	</div>
-	        		{% endfor %}
-        		</div>
-        		<div class="col-md-6 remove-padding">
-        			{% for article in leftCol %}
-        			<div class="row news-frame">
-        				<div class="col-md-12">
-		        			<a href="{{article.get_absolute_url}}">
-			        			<div class="row">
-			        				{% if article.image %}
-			        				<div class="col-md-12 remove-padding">
-				        				<img class="img-responsive" href="/" src="{{article.image.image.url}}" alt="">
-				        			</div>
-				        			{% endif %}
-				        		</div>
-				        		<div class="row">
-				        			<div class="col-md-12">
-				        				<div class="row textfield headline-text" style="padding-left: 5px;">
-				        					<h2>{{article.headline|linebreaks}}</h2>
-				        				</div>
-				        			</div>
-				        		</div>
-				        		<div class="row">
-				        			<div class="col-md-12">
-				        				<div class="row textfield-small" style="padding-left: 5px;">
-				        					{{article.lead|linebreaks}}
-				        				</div>
-				        			</div>
-			        			</div>
-			        		</a>
-			        	</div>
-	        		</div>
-	        		{% endfor %}
-        		</div>
-        	</div>
-        </div>
-        {% if is_paginated %}
-	        <div class="pagination col-md-12">
-	            <div class="page-links col-md-12">
-	            	<div class="row">
-	            		<div class="col-md-1 col-md-offset-4 page-buttons">
-		                	{% if page_obj.has_previous %}
-			                    <a href="/article/news/{{ page_obj.previous_page_number }}">
-			                    <button type="" class="btn btn-success btn-margin-top" style="margin-bottom: 10px;">Forrige</button></a>
-		                	{% endif %}
-		                </div>
-		                <div class="page-current col-md-2 text-secondary-dark">
-		                    Side {{ page_obj.number }} av {{ page_obj.paginator.num_pages }}
-		                </div>
-		                <div class="col-md-1 page-buttons">
-		                	{% if page_obj.has_next %}
-		                    	<a href="/article/news/{{ page_obj.next_page_number }}"><button type="" class="btn btn-success btn-margin-top" style="margin-bottom: 10px;">Neste</button></a>
-		                	{% endif %}
-		                </div>
-		            </div>
-	            </div>
-	        </div>
-	    {% endif %}
+			<div class="row text-secondary-dark news-tag">
+				Nyheter
+			</div>
+			<div class="row">
+				<div class="col-md-6 remove-padding">
+					{% for article in rightCol %}
+					<div class="row news-frame">
+						<div class="col-md-12">
+							<a href="{{article.get_absolute_url}}">
+								<div class="row">
+									{% if article.image %}
+									<div class="col-md-12 remove-padding">
+										{% thumbnail '0x300' article.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
+									</div>
+									{% endif %}
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row textfield headline-text" style="padding-left: 5px;">
+											<h2>{{article.headline|linebreaks}}</h2>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row textfield-small" style="padding-left: 5px;">
+											{{article.lead|linebreaks}}
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="col-md-6 remove-padding">
+					{% for article in leftCol %}
+					<div class="row news-frame">
+						<div class="col-md-12">
+							<a href="{{article.get_absolute_url}}">
+								<div class="row">
+									{% if article.image %}
+									<div class="col-md-12 remove-padding">
+										{% thumbnail '0x300' article.image.image -- alt="" href="/" class="img-responsive" style="width: 100%;" %}
+									</div>
+									{% endif %}
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row textfield headline-text" style="padding-left: 5px;">
+											<h2>{{article.headline|linebreaks}}</h2>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row textfield-small" style="padding-left: 5px;">
+											{{article.lead|linebreaks}}
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		{% if is_paginated %}
+			<div class="pagination col-md-12">
+				<div class="page-links col-md-12">
+					<div class="row">
+						<div class="col-md-1 col-md-offset-4 page-buttons">
+							{% if page_obj.has_previous %}
+								<a href="/article/news/{{ page_obj.previous_page_number }}">
+								<button type="" class="btn btn-success btn-margin-top" style="margin-bottom: 10px;">Forrige</button></a>
+							{% endif %}
+						</div>
+						<div class="page-current col-md-2 text-secondary-dark">
+							Side {{ page_obj.number }} av {{ page_obj.paginator.num_pages }}
+						</div>
+						<div class="col-md-1 page-buttons">
+							{% if page_obj.has_next %}
+								<a href="/article/news/{{ page_obj.next_page_number }}"><button type="" class="btn btn-success btn-margin-top" style="margin-bottom: 10px;">Neste</button></a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endif %}
 	</div>
 {% endblock %}

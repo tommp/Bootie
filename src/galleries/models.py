@@ -15,7 +15,7 @@ class Gallery(models.Model):
     class Meta:
         verbose_name = _('gallery')
         verbose_name_plural = _('galleries')
-    
+
     name = models.CharField(_('name'), max_length=255)
     description = models.TextField(_('description'), blank=True)
 
@@ -80,4 +80,5 @@ class Image(models.Model):
         else:
             html = ''
         return mark_safe(html)
+
     get_credit.shord_description = 'credit'
