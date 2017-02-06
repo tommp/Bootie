@@ -91,6 +91,7 @@ INSTALLED_APPS = (
     'paddleusers',
     'events',
     'galleries',
+    'ads'
 )
 
 MIDDLEWARE_CLASSES = (
