@@ -60,7 +60,9 @@
             <div class="col-md-2 col-md-offset-3">
                 <a href="/">
                     {% if frontpageData %}
-                        {% thumbnail '0x60' frontpageData.top_logo.image -- alt="Logo" href="/" class="main-top-logo" %}
+                        {% if frontpageData.top_logo %}
+                            {% thumbnail '0x60' frontpageData.top_logo.image -- alt="Logo" href="/" class="main-top-logo" %}
+                        {% endif %}
                     {% endif %}
                 </a>
             </div>
@@ -144,11 +146,11 @@
                                 <div class="form-group col-xs-4 col-sm-4 col-xs-offset-1 col-sm-offset-1 purgpadding">
                                     <input type="text" placeholder="Brukernavn" class="form-control" name="username">
                                 </div>
-                                <div class="form-group col-xs-4 col-sm-4 purgpadding">
+                                <div class="form-group col-xs-3 col-sm-3 purgpadding">
                                     <input type="password" placeholder="Passord" class="form-control" name="password">
                                 </div>
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-success col-xs-2 col-sm-2">Logg inn</button>
+                                <button type="submit" class="btn btn-success col-xs-3 col-sm-3">Logg inn</button>
                             </div>
                         </form>
                     {% endif %}
@@ -189,9 +191,11 @@
         </ul>
         {% endblock %}
 
-        {% block content %}
-            <p>You are showing the base template</p>
-        {% endblock %}
+        <div class="base-content-block">
+            {% block content %}
+                <p>You are showing the base template</p>
+            {% endblock %}
+        </div>
 
         {% block footer %}
         <div class="row footer visible-md visible-lg">
@@ -205,7 +209,19 @@
             <div class="row visible-md visible-lg">
                 <div class="col-md-2 col-md-offset-5 ntnui-link">
                     <a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">
-                        <img class="facefoot-logo"  href="/" src="{% static 'img/FacebookLogo.png' %}" alt="FBLogo">
+                        {% if frontpageData %}
+                            {% if frontpageData.facebookImage %}
+                                {% thumbnail '0x100' frontpageData.facebookImage.image -- alt="" href="/" class="facefoot-logo" %}
+                            {% else %}
+                                <div class="facebook-text text-secondary-dark">
+                                    Finn oss på facebook!
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="facebook-text text-secondary-dark">
+                                Finn oss på facebook!
+                            </div>
+                        {% endif %}
                     </a>
                 </div>
             </div>

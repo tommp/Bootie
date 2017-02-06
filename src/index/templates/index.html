@@ -4,7 +4,6 @@
 
 {% block css %}
     <link type="text/less" rel="stylesheet" href="{% static 'css/index.less' %}"/>
-    <link type="text/less" rel="stylesheet" href="{% static 'css/calendar.less' %}"/>
 {% endblock %}
 
 {% block content %}
@@ -100,11 +99,4 @@
 
 
 {% block js %}
-<script type="text/javascript">
-    $(document).ready(function() {
-        $( "#calendar-div" ).slideDown( "slow", function() {
-        // Animation complete.
-        });
-    });
-</script>
 {% endblock %}

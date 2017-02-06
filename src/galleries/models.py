@@ -33,8 +33,8 @@ class Gallery(models.Model):
 
 class Image(models.Model):
     class Meta:
-        verbose_name=_('image')
-        verbose_name_plural=_('images')
+        verbose_name = _('image')
+        verbose_name_plural = _('images')
         ordering = ('-updated', )
 
     def __unicode__(self):
