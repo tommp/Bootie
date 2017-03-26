@@ -149,7 +149,7 @@ with open(DB_INFO_DIR) as f:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'bootiedb',
+        'NAME': os.path.join(GIT_ROOT, 'bootiedb'),
     }
 }
 
