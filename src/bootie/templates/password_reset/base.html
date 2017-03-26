@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en-US">
+
+{% load staticfiles %}
+{% load imagekit %}
+
+<head>
+    <title>NTNUI Padling</title>
+    {% block extra_head %}
+    {% endblock %}
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'img/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'img/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'img/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'js/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+    <meta charset="UTF-8">
+    <!--<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />-->
+    <!--<meta name="viewport" content="width=device-width" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link type="text/less" rel="stylesheet" href="{% static 'css/base.less' %}"/>
+    <link type="text/less" rel="stylesheet" href="{% static 'css/pass_reset.less' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+    <link type="text/less" rel="stylesheet" href="{% static 'css/text.less' %}"/>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    
+    {% block css %}
+    {% endblock %}
+
+    <div class="container-fluid no-overflow">
+        {% block header %}
+        <div class="row header visible-md visible-lg">
+            <div class="col-md-1 dd-menu">
+                <div class="menu-button" id="main-menu">Meny</div>
+            </div>
+
+            <div class="col-md-1 admin-tag">
+                {% if user.is_staff %}
+                    <a href="/admin">
+                        Admin
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="col-md-2 col-md-offset-3">
+                <a href="/">
+                    {% if frontpageData %}
+                        {% thumbnail '0x60' frontpageData.top_logo.image -- alt="Logo" href="/" class="main-top-logo" %}
+                    {% endif %}
+                </a>
+            </div>
+
+            <div class="col-md-5 login">
+            {% if form.errors %}
+            {% elif user.is_authenticated %}
+                <a class="profile-link" href="/users/{{user.id}}/profile/">Profil </a>
+                <a class="logout-link" href="{% url "bootie_logout" %}">Logg ut</a>
+            {% else %}
+                <form class="navbar-form navbar-right" role="form" action="{% url "bootie_login" %}"
+                method="post" accept-charset="utf-8">
+                    <div class="form-group">
+                        <input type="text" placeholder="Brukernavn" class="form-control" name="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Passord" class="form-control" name="password">
+                    </div>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Logg inn</button>
+                </form>
+            {% endif %}
+            </div>
+        </div>
+
+        <!-- MOBILE -->
+        <div class="row header visible-xs visible-sm">
+            <div class="col-xs-2 col-sm-2 menu-button-mobile">
+                <div id="mobile-main-menu">Meny</div>
+            </div>
+
+            <div class="col-xs-3 col-sm-3 admin-tag-mobile">
+                {% if user.is_staff %}
+                    <a href="/admin">
+                        Admin
+                    </a>
+                {% endif %}
+            </div>
+
+            {% if user.is_authenticated %}
+                <div class="col-xs-3 col-sm-3 profile-link-mobile">
+                    <a href="/users/{{user.id}}/profile/">
+                        Profil!
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 logout-link-mobile">
+                    <a href="{% url "bootie_logout" %}">
+                        Logg ut
+                    </a>
+                </div>
+            {% else %}
+                <div class="col-xs-5 col-sm-5 col-xs-offset-2 col-sm-offset-2 ntnui-link">
+                    <a href="http://ntnui.no" target="_blank">
+                        <img class="ntnui-logo-mobile-header" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        {% if user.is_authenticated %}
+            <div class="row mobile-extra-header visible-xs visible-sm">
+                <div class="col-xs-7 col-sm-7 welcome-mobile">
+                    {% if user.first_name %}
+                        Velkommen tilbake <a href="/users/{{user.id}}/profile/">{{ user.first_name }}!</a>
+                    {% else %}
+                        Velkommen tilbake <a href="/users/{{user.id}}/profile/">{{ user.username }}!</a>
+                    {% endif %}
+                </div>
+                <div class="col-xs-4 col-xs-offset-1 col-sm-4 col-sm-offset-1 ntnui-link">
+                    <a href="http://ntnui.no" target="_blank">
+                        <img class="ntnui-logo-mobile-header" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="row mobile-extra-header visible-xs visible-sm">
+                    {% if form.errors %}
+                    {% else %}
+                        <form class="navbar-form navbar-right" role="form" action="{% url "bootie_login" %}"
+                        method="post" accept-charset="utf-8">
+                            <div class="row">
+                                <div class="form-group col-xs-4 col-sm-4 col-xs-offset-1 col-sm-offset-1 purgpadding">
+                                    <input type="text" placeholder="Brukernavn" class="form-control" name="username">
+                                </div>
+                                <div class="form-group col-xs-3 col-sm-3 purgpadding">
+                                    <input type="password" placeholder="Passord" class="form-control" name="password">
+                                </div>
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success col-xs-3 col-sm-3">Logg inn</button>
+                            </div>
+                        </form>
+                    {% endif %}
+            </div>
+        {% endif %}
+        
+        <ul class="dropdown-menu-options hidden-xs hidden-sm">
+            <li><a class="frontpagemenu" href="/">Tilbake til forsiden</a></li>
+            <li><a href="/events/1/">Eventer</a></li>
+            <li><a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">Forum</a></li>
+            <li><a href="/info/">Informasjonsarkiv</a></li>
+            <li><a href="/info/english/">Information in English!</a></li>
+            <li><a href="/article/news/1/">Nyheter</a></li>
+            <li><a href="/users/board/">Styret</a></li>
+            <li><a href="/weather/">Værmeldinger</a></li>
+
+            {% if user.is_authenticated %}
+            {% else %}
+            <li><a href="/users/register/">Opprett brukerkonto (Register account)</a></li>
+            {% endif %}
+        </ul>
+
+        <ul class="mobile-dropdown-menu-options hidden-md hidden-lg">
+            <li><a class="frontpagemenu" href="/">Tilbake til forsiden</a></li>
+            <li><a href="/events/1/">Eventer</a></li>
+            <li><a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">Forum</a></li>
+            <li><a href="/info/">Informasjonsarkiv</a></li>
+            <li><a href="/info/english/">Information in English!</a></li>
+            <li><a href="/article/news/1/">Nyheter</a></li>
+            <li><a href="/users/board/">Styret</a></li>
+            <li><a href="/weather/">Værmeldinger</a></li>
+            
+            {% if user.is_authenticated %}
+            {% else %}
+            <li><a href="/users/register/">Opprett brukerkonto (Register account)</a></li>
+            {% endif %}
+
+        </ul>
+        {% endblock %}
+
+        <div class="base-content-block-pass">
+            {% block content %}
+                <p>You are showing the base template</p>
+            {% endblock %}
+        </div>
+
+        {% block footer %}
+        <div class="row footer visible-md visible-lg">
+            <div class="row">
+                <div class="col-md-2 col-md-offset-5 ntnui-link visible-md visible-lg">
+                    <a href="http://ntnui.no" target="_blank">
+                        <img class="ntnui-logo" href="/" src="{% static 'img/ntnui_logo_2.png' %}" alt="Logo">
+                    </a>
+                </div>
+            </div>
+            <div class="row visible-md visible-lg">
+                <div class="col-md-2 col-md-offset-5 ntnui-link">
+                    <a href="https://www.facebook.com/groups/ntnuipadling/" target="_blank">
+                        {% if frontpageData %}
+                            {% if frontpageData.facebookImage %}
+                                {% thumbnail '0x100' frontpageData.facebookImage.image -- alt="" href="/" class="facefoot-logo" %}
+                            {% else %}
+                                <div class="facebook-text text-secondary-dark">
+                                    Finn oss på facebook!
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="facebook-text text-secondary-dark">
+                                Finn oss på facebook!
+                            </div>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <p class="text-secondary-dark footer-paragraph visible-md visible-lg">
+                        Laget av Tom M. Pedersen for NTNUI-Padling.
+                    </p>
+
+                    <p class="text-secondary-dark footer-paragraph">
+                        2015 &copy; NTNUI-Padling.
+                    </p>
+                    <p class="text-secondary-dark footer-paragraph">
+                        Padla på!
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/less.min.js' %}"></script>
+    <script type="text/javascript">
+    $("#main-menu").click(function(){
+            $(".dropdown-menu-options").toggle();
+        });
+    </script>
+    <script type="text/javascript">
+    $("#mobile-main-menu").click(function(){
+            $(".mobile-dropdown-menu-options").toggle();
+        });
+    </script>
+    <script type="text/javascript">
+        var disqus_config = function () { 
+          this.language = "no";
+        };
+    </script>
+    {% block js %}
+    {% endblock %}
+
+</body>
+</html>

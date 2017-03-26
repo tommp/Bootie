@@ -1,1 +1,4 @@
 *.pyc
+public
+src/bootie/bootie_db.txt
+src/bootie/secret_key.txt
