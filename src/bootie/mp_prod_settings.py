@@ -134,15 +134,22 @@ WSGI_APPLICATION = 'bootie.wsgi.application'
 with open(DB_INFO_DIR) as f:
     content = [x.strip('\n') for x in f.readlines()]
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': content[0],
+#        'USER': content[1],
+#        'PASSWORD': content[2],
+#        'HOST': content[3],
+#        'PORT': '',
+#
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': content[0],
-        'USER': content[1],
-        'PASSWORD': content[2],
-        'HOST': content[3],
-        'PORT': '',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'bootiedb',
     }
 }
 
