@@ -20,6 +20,7 @@ GIT_ROOT = os.path.abspath(__file__).rsplit(os.path.sep, 3)[0]
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILE_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.dirname(__file__)
+DB_INFO_DIR = BASE_DIR + '/bootie/db_info.txt'
 SECRET_KEY_DIR = BASE_DIR + '/bootie/secret_key.txt'
 
 # Prod security settings
@@ -129,13 +130,20 @@ WSGI_APPLICATION = 'bootie.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+with open(DB_INFO_DIR) as f:
+    content = [x.strip('\n') for x in f.readlines()]
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'bootiedb',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': content[0],
+        'USER': content[1],
+        'PASSWORD': content[2],
+        'HOST': content[3],
+        'PORT': '',
+
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
