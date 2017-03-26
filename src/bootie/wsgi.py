@@ -11,7 +11,7 @@ import os, sys
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bootie.prod_settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bootie.mp_prod_settings")
 
 
 
