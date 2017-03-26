@@ -58,7 +58,8 @@ with open(SECRET_KEY_DIR) as f:
 DEBUG = False
 
 ADMINS = (
-    ('Tom Meland Pedersen', 'tompersen@gmail.com')
+    ('Tom Meland Pedersen', 'tompersen@gmail.com'),
+    ('Sondre Midtskogen', 'Sondrehadet@gmail.com')
 )
 
 MANAGERS = ADMINS
